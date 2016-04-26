@@ -35,11 +35,13 @@ public class MapController : MonoBehaviour {
 				{ 
 					GameObject normalTile = Instantiate(NormalTilePrefab, new Vector2((x * xOffset) + (newXOffset), y * yOffset), Quaternion.identity) as GameObject;
 					newXOffset += xOffset/2;
+					normalTile.transform.SetParent(this.gameObject.transform);
 					normalTile.name = ("Tile" + "_" + x + "_" + y);
 				}
 				else
 				{
 					GameObject normalTile = Instantiate(NormalTilePrefab, new Vector2(x * xOffset, y * yOffset), Quaternion.identity) as GameObject;
+					normalTile.transform.SetParent(this.gameObject.transform);
 					normalTile.name = ("Tile" + "_" + x + "_" + y);
 				}
 					
