@@ -135,6 +135,7 @@ GameObject:
   - 4: {fileID: 647923532}
   - 212: {fileID: 647923531}
   - 65: {fileID: 647923533}
+  - 114: {fileID: 647923534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -196,6 +197,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6666667, y: 0.6666667, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &647923534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 647923530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7698ad41be72ac640b59959b78b14d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858887910
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d71377fef8a8b49883c54970d51950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjectToDrag: {fileID: 0}
   speedMovement: 1
 --- !u!4 &2073523393
 Transform:
