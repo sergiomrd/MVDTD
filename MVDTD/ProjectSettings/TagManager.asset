@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 1680554481
+    locked: 0
+  - name: Turrets
+    uniqueID: 68303623
+    locked: 0
