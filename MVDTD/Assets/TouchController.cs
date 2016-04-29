@@ -16,6 +16,7 @@ public class TouchController : MonoBehaviour  {
 	private float speedMovement;
 	private float dist;
 	private Vector3 offset;
+	private Vector3 touchWorld;
 	void Start()
 	{
 		_camera = Camera.main;
@@ -23,7 +24,6 @@ public class TouchController : MonoBehaviour  {
 
 	void Update()
 	{
-		Vector3 v3;
 
 		Touch [] touches = Input.touches;
 
@@ -31,15 +31,21 @@ public class TouchController : MonoBehaviour  {
 		{
 			if(touches.Length == 1)
 			{
+				//We get the phase of the touch
 				TouchPhase phase = touches[0].phase;
 
+				// We get the position of touch
 				Vector3 pos = touches[0].position;
 
 				switch(phase)
 				{
+
 				case TouchPhase.Began:
 
+					// Sets a ray where the user has touch
 					Ray ray = Camera.main.ScreenPointToRay(pos);
+
+					//We get the info of the ray
 					RaycastHit hitInfo;
 
 					if(Physics.Raycast(ray, out hitInfo))
@@ -48,14 +54,17 @@ public class TouchController : MonoBehaviour  {
 						//If we hit something, the camera will be blocked
 						_camera.GetComponent<CameraController>().BlockCamera = true;
 
+						//If the thing has the component Draggable, then we will move it
 						if(hitInfo.collider.GetComponent<Draggable>() != null)
 						{
+							//We get the object to drag
 							gameObjectToDrag = hitInfo.transform.gameObject;
-							Debug.Log(gameObjectToDrag);
-							dist = hitInfo.transform.position.z - _camera.transform.position.z;
-							v3 = new Vector3(pos.x, pos.y, pos.z);
-							v3 = Camera.main.ScreenToWorldPoint(v3);
-							offset = gameObjectToDrag.transform.position - v3;
+
+							//We create a vector of the touch position in World
+							touchWorld = Camera.main.ScreenToWorldPoint(pos);
+
+							//The offset is set as the current transform of the object minus the actual position of the touch
+							offset = gameObjectToDrag.transform.position - touchWorld;
 
 						}
 
@@ -64,24 +73,30 @@ public class TouchController : MonoBehaviour  {
 
 						
 					}
-
 					break;
+
 				case TouchPhase.Moved:
 
+					//If we have something to drag
 					if(gameObjectToDrag != null)
 					{
-						v3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
-						v3 = Camera.main.ScreenToWorldPoint(v3);
-						gameObjectToDrag.transform.position = v3 + offset;
+						//We get the touch position in the World
+						touchWorld = Camera.main.ScreenToWorldPoint(pos);
+						//Set the Z Axis to 0
+						touchWorld.z = 0;
+						//Set the object position to our touch position and adds some offset
+						gameObjectToDrag.transform.position = touchWorld + offset;
 
-						_camera.GetComponent<CameraController>().BlockCamera = true;
+
 					}
-
-	
 					break;
+
 				case TouchPhase.Ended:
 
+					//If we stop touching, the game object turns null
 					gameObjectToDrag = null;
+
+					//And we activate again the camera movement
 					_camera.GetComponent<CameraController>().BlockCamera = false;
 
 					break;

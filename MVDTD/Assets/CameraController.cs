@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 
 		_camera = Camera.main;
+
 	}
 	
 	// Update is called once per frame
