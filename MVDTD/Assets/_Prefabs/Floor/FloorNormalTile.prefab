@@ -9,8 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 417628}
   - 212: {fileID: 21253826}
-  - 65: {fileID: 6551992}
-  m_Layer: 0
+  - 114: {fileID: 11479524}
+  - 65: {fileID: 6536622}
+  m_Layer: 2
   m_Name: NormalTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +26,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 413692}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FloorNormalTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,12 +53,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.66, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 413692}
   m_RootOrder: 0
---- !u!65 &6551992
+--- !u!65 &6536622
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,10 +66,22 @@ BoxCollider:
   m_GameObject: {fileID: 114446}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.125, y: 0.375, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.44382405, y: 0.31069934, z: 0}
+  m_Center: {x: 0.000000059604645, y: 0.00053817034, z: 0}
+--- !u!114 &11479524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13392a8aa48677246b4773188991ecb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretToSet: {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
 --- !u!212 &21253826
 SpriteRenderer:
   m_ObjectHideFlags: 1

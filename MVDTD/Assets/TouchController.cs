@@ -17,6 +17,16 @@ public class TouchController : MonoBehaviour  {
 	private float dist;
 	private Vector3 offset;
 	private Vector3 touchWorld;
+
+	private float touchTime = 2f;
+
+	[SerializeField]
+	private float touchTimeInstantiate = 1f;
+
+	private bool longPress = false;
+
+	private RaycastHit hitInfo;
+
 	void Start()
 	{
 		_camera = Camera.main;
@@ -40,20 +50,37 @@ public class TouchController : MonoBehaviour  {
 				switch(phase)
 				{
 
-				case TouchPhase.Began:
+				case TouchPhase.Stationary:
 
+					touchTime -= Time.deltaTime;
+					//_camera.GetComponent<CameraController>().BlockCamera = true;
+
+					if(touchTime <= 0)
+					{
+						if(hitInfo.collider.GetComponent<FloorTile>() != null)
+						{
+							//TODO Open Turret Menu
+							//Fix movement
+							hitInfo.collider.GetComponent<FloorTile>().SetTurret();
+							touchTime = touchTimeInstantiate;
+						}
+
+					}
+
+					break;
+
+				case TouchPhase.Began:
+					
 					// Sets a ray where the user has touch
 					Ray ray = Camera.main.ScreenPointToRay(pos);
-
-					//We get the info of the ray
-					RaycastHit hitInfo;
 
 					if(Physics.Raycast(ray, out hitInfo))
 					{
 						
 						//If we hit something, the camera will be blocked
-						_camera.GetComponent<CameraController>().BlockCamera = true;
+						//_camera.GetComponent<CameraController>().BlockCamera = true;
 
+						/*
 						//If the thing has the component Draggable, then we will move it
 						if(hitInfo.collider.GetComponent<Draggable>() != null)
 						{
@@ -65,18 +92,17 @@ public class TouchController : MonoBehaviour  {
 
 							//The offset is set as the current transform of the object minus the actual position of the touch
 							offset = gameObjectToDrag.transform.position - touchWorld;
-
 						}
+						*/
 
-
-
-
-						
 					}
 					break;
-
+				
 				case TouchPhase.Moved:
 
+					touchTime = touchTimeInstantiate;
+
+					/*
 					//If we have something to drag
 					if(gameObjectToDrag != null)
 					{
@@ -89,20 +115,26 @@ public class TouchController : MonoBehaviour  {
 
 
 					}
+					*/
+
 					break;
 
 				case TouchPhase.Ended:
+					
+					touchTime = touchTimeInstantiate;
 
 					//If we stop touching, the game object turns null
-					gameObjectToDrag = null;
+					//gameObjectToDrag = null;
+
 
 					//And we activate again the camera movement
-					_camera.GetComponent<CameraController>().BlockCamera = false;
+					//_camera.GetComponent<CameraController>().BlockCamera = false;
 
 					break;
 				}
 			}
 		}
+
 	}
 
 
