@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 60568963}
   - 114: {fileID: 60568962}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,21 +125,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &797404354 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
-  m_PrefabInternal: {fileID: 1348836426}
---- !u!114 &797404356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 797404354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5989b9e7d451d8f43ae27d58c8a8f064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &858887910
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +321,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11458916, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
+      propertyPath: myLayerMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -382,9 +371,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 5470552, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
-      propertyPath: m_Constraints
-      value: 124
+    - target: {fileID: 6510744, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
+      propertyPath: m_Size.y
+      value: 0.17652893
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510744, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
+      propertyPath: m_Center.y
+      value: 0.22949505
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}

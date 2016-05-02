@@ -16,8 +16,8 @@ TagManager:
   - Outline
   - Draggable
   - Floor
-  - 
-  - 
+  - Enemys
+  - Turrets
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Turrets
     uniqueID: 68303623
+    locked: 0
+  - name: Enemys
+    uniqueID: 2159248235
     locked: 0
