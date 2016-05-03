@@ -17,12 +17,10 @@ public class CameraController : MonoBehaviour {
 
 	[SerializeField]
 	private float speedMovement;
-	private Camera _camera;
 
 	// Use this for initialization
 	void Start () {
 
-		_camera = Camera.main;
 
 	}
 	

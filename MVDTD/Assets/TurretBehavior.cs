@@ -3,45 +3,52 @@ using System.Collections;
 
 public class TurretBehavior : MonoBehaviour {
 
-	public LayerMask myLayerMask;
+	public float shootInterval;
+
+	[SerializeField]
+	private LayerMask myLayerMask;
+
+	[SerializeField]
+	private GameObject ammo;
+
 
 	// Use this for initialization
 	void Start () {
-	
+
+		InvokeRepeating("Shoot", 0.5f, shootInterval);
+
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 			
-		/*
-		RaycastHit[] hits;
 
-		hits = Physics.RaycastAll(transform.position, transform.right, myLayerMask);
-		Debug.Log(hits.Length);
-		Debug.DrawRay(transform.position, transform.right);
-		Debug.Log(hits[0].collider.gameObject.name);
+	
+	}
 
-		for(int i = 0; i < hits.Length; i++)
-		{
-			//RaycastHit hit = hits[i];
-			//Debug.Log(hit.collider.gameObject.name);
-		}
-		*/
-		//RaycastHit hit;
+	bool EnemyInFront()
+	{
+		RaycastHit [] hits = Physics.RaycastAll(new Vector3(transform.localPosition.x, transform.localPosition.y + 0.5f), transform.right, 100, ~myLayerMask);
 
-		/*
-		if(Physics.Raycast(transform.position, transform.right, out hit, 100, ~myLayerMask))
-		{
-			Debug.Log(hit.transform.name);
-		}
-		*/
-		RaycastHit [] hits = Physics.RaycastAll(transform.localPosition, transform.right, 100, ~myLayerMask);
+		Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y + 0.5f, transform.localPosition.z), transform.right);
 
 		for(int i = 0; i < hits.Length; i++)
 		{
 			RaycastHit hit = hits[i];
-			Debug.Log(hit.transform.name);
+			if(hit.collider != null && hit.collider.GetComponent<EnemyBehavior>())
+			{
+				return true;
+			}
 		}
-	
+
+		return false;
+	}
+
+	void Shoot()
+	{
+		if(EnemyInFront())
+		{
+			GameObject bullet = Instantiate(ammo, new Vector3(transform.localPosition.x, transform.localPosition.y + 0.5f), Quaternion.identity) as GameObject;
+		}
 	}
 }

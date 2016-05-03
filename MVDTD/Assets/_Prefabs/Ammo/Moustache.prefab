@@ -1,69 +1,81 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &199342
+--- !u!1 &128364
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 436932}
-  - 212: {fileID: 21298910}
-  - 65: {fileID: 6518816}
-  - 114: {fileID: 11458916}
-  m_Layer: 12
-  m_Name: Player
+  - 4: {fileID: 459102}
+  - 212: {fileID: 21282966}
+  - 54: {fileID: 5401524}
+  - 65: {fileID: 6584566}
+  - 114: {fileID: 11437310}
+  m_Layer: 0
+  m_Name: Moustache
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &436932
+--- !u!4 &459102
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199342}
+  m_GameObject: {fileID: 128364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 2.16, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!65 &6518816
+--- !u!54 &5401524
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 128364}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 124
+  m_CollisionDetection: 0
+--- !u!65 &6584566
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199342}
+  m_GameObject: {fileID: 128364}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.57418704, y: 0.905375, z: 0}
-  m_Center: {x: 0.047312617, y: 0.4526875, z: 0}
---- !u!114 &11458916
+  m_Size: {x: 0.5, y: 0.5, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11437310
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199342}
+  m_GameObject: {fileID: 128364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5989b9e7d451d8f43ae27d58c8a8f064, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d9cb40965014dd42b7099280c778516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 2
-  myLayerMask:
-    serializedVersion: 2
-    m_Bits: 5120
-  ammo: {fileID: 128364, guid: 97df983e16cf2ea41afb487cfa1adc7d, type: 2}
---- !u!212 &21298910
+  speedMovement: 1
+--- !u!212 &21282966
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199342}
+  m_GameObject: {fileID: 128364}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,8 +95,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 68303623
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 61aa2d8e9ccbda84191788c3d756a96a, type: 3}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: b3cec2295e027d84ab2171c9cb61d7e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,5 +109,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 199342}
+  m_RootGameObject: {fileID: 128364}
   m_IsPrefabParent: 1

@@ -321,10 +321,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11458916, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
-      propertyPath: myLayerMask.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
     - target: {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -373,11 +369,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 6510744, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
       propertyPath: m_Size.y
-      value: 0.17652893
+      value: 0.29266906
       objectReference: {fileID: 0}
     - target: {fileID: 6510744, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
       propertyPath: m_Center.y
-      value: 0.22949505
+      value: 0.4270259
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}

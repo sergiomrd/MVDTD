@@ -4,10 +4,6 @@ using UnityEngine.EventSystems;
 
 public class TouchController : MonoBehaviour  {
 
-	//Declares the camera
-	private Camera _camera;
-
-
 	//Declares the game object to be dragged
 	[SerializeField]
 	private GameObject gameObjectToDrag;
@@ -23,13 +19,11 @@ public class TouchController : MonoBehaviour  {
 	[SerializeField]
 	private float touchTimeInstantiate = 1f;
 
-	private bool longPress = false;
-
 	private RaycastHit hitInfo;
 
 	void Start()
 	{
-		_camera = Camera.main;
+		
 	}
 
 	void Update()
