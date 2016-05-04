@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FloorTile : MonoBehaviour {
+
+	[SerializeField]
+	private GameObject buyTurretUI;
+
+	private bool turretOverTile = false;
 
 	private float x;
 	private float y;
@@ -45,17 +51,28 @@ public class FloorTile : MonoBehaviour {
 		y = gameObject.transform.position.y;
 	}
 
+	//TODO: Menu that specifies the turret
 	[SerializeField]
 	private GameObject turretToSet;
 
 	public void SetTurret()
 	{
-		Debug.Log(XID + "_" + YID);
-
+		// Sets the turret and makes the layers right
 		GameObject turret = Instantiate(turretToSet, transform.position, Quaternion.identity) as GameObject;
 		turret.GetComponent<SpriteRenderer>().sortingOrder = YID * -1;
 
 	}
-		
+
+	public void ActiveBuyTurretUI(bool choice)
+	{
+		if(choice)
+		{
+			buyTurretUI.SetActive(true);
+		}
+		else
+		{
+			buyTurretUI.SetActive(false);
+		}
+	}
 
 }

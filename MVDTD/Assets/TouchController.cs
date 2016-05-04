@@ -4,26 +4,19 @@ using UnityEngine.EventSystems;
 
 public class TouchController : MonoBehaviour  {
 
-	//Declares the game object to be dragged
-	[SerializeField]
-	private GameObject gameObjectToDrag;
+	// Time that the player has to tap the screen
+	private float longPressTime;
 
-	[SerializeField]
-	private float speedMovement;
-	private float dist;
-	private Vector3 offset;
-	private Vector3 touchWorld;
-
-	private float touchTime = 2f;
-
+	// Time that the player has to tap the screen at the beggining
 	[SerializeField]
 	private float touchTimeInstantiate = 1f;
 
+	// Saves the hitInfo
 	private RaycastHit hitInfo;
 
 	void Start()
 	{
-		
+		longPressTime = touchTimeInstantiate;
 	}
 
 	void Update()
@@ -41,22 +34,28 @@ public class TouchController : MonoBehaviour  {
 				// We get the position of touch
 				Vector3 pos = touches[0].position;
 
+
+
 				switch(phase)
 				{
 
 				case TouchPhase.Stationary:
 
-					touchTime -= Time.deltaTime;
+					longPressTime -= Time.deltaTime;
 					//_camera.GetComponent<CameraController>().BlockCamera = true;
 
-					if(touchTime <= 0)
+					if(longPressTime <= 0)
 					{
-						if(hitInfo.collider.GetComponent<FloorTile>() != null)
+						//TODO: if Can Build
+						if(hitInfo.collider != null && hitInfo.collider.GetComponent<FloorTile>() != null)
 						{
-							//TODO Open Turret Menu
-							//Fix movement
+							//TODO Open Turret Menu and Fix phase moved
+
 							hitInfo.collider.GetComponent<FloorTile>().SetTurret();
-							touchTime = touchTimeInstantiate;
+							hitInfo.collider.GetComponent<FloorTile>().ActiveBuyTurretUI(true);
+							longPressTime = touchTimeInstantiate;
+
+							//if the tile has turret on it open turret menú
 						}
 
 					}
@@ -68,61 +67,24 @@ public class TouchController : MonoBehaviour  {
 					// Sets a ray where the user has touch
 					Ray ray = Camera.main.ScreenPointToRay(pos);
 
+
 					if(Physics.Raycast(ray, out hitInfo))
 					{
-						
-						//If we hit something, the camera will be blocked
-						//_camera.GetComponent<CameraController>().BlockCamera = true;
-
-						/*
-						//If the thing has the component Draggable, then we will move it
-						if(hitInfo.collider.GetComponent<Draggable>() != null)
-						{
-							//We get the object to drag
-							gameObjectToDrag = hitInfo.transform.gameObject;
-
-							//We create a vector of the touch position in World
-							touchWorld = Camera.main.ScreenToWorldPoint(pos);
-
-							//The offset is set as the current transform of the object minus the actual position of the touch
-							offset = gameObjectToDrag.transform.position - touchWorld;
-						}
-						*/
+						Debug.Log(hitInfo.collider.name);
 
 					}
+
 					break;
 				
 				case TouchPhase.Moved:
 
-					touchTime = touchTimeInstantiate;
-
-					/*
-					//If we have something to drag
-					if(gameObjectToDrag != null)
-					{
-						//We get the touch position in the World
-						touchWorld = Camera.main.ScreenToWorldPoint(pos);
-						//Set the Z Axis to 0
-						touchWorld.z = 0;
-						//Set the object position to our touch position and adds some offset
-						gameObjectToDrag.transform.position = touchWorld + offset;
-
-
-					}
-					*/
+					longPressTime = touchTimeInstantiate;
 
 					break;
 
 				case TouchPhase.Ended:
 					
-					touchTime = touchTimeInstantiate;
-
-					//If we stop touching, the game object turns null
-					//gameObjectToDrag = null;
-
-
-					//And we activate again the camera movement
-					//_camera.GetComponent<CameraController>().BlockCamera = false;
+					longPressTime = touchTimeInstantiate;
 
 					break;
 				}

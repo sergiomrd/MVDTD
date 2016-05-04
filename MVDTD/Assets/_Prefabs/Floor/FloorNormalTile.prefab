@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13392a8aa48677246b4773188991ecb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buyTurretUI: {fileID: 0}
   turretToSet: {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
 --- !u!212 &21253826
 SpriteRenderer:
