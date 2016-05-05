@@ -9,7 +9,7 @@ public class TouchController : MonoBehaviour  {
 
 	// Time that the player has to tap the screen at the beggining
 	[SerializeField]
-	private float touchTimeInstantiate = 1f;
+	private float touchTimeInstantiate = 0.5f;
 
 	// Saves the hitInfo
 	private RaycastHit hitInfo;
@@ -51,7 +51,6 @@ public class TouchController : MonoBehaviour  {
 						{
 							//TODO Open Turret Menu and Fix phase moved
 
-							hitInfo.collider.GetComponent<FloorTile>().SetTurret();
 							hitInfo.collider.GetComponent<FloorTile>().ActiveBuyTurretUI(true);
 							longPressTime = touchTimeInstantiate;
 

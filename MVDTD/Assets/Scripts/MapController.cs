@@ -30,8 +30,8 @@ public class MapController : MonoBehaviour {
 		}
 	}
 
-	void Start () {
-
+	void Awake()
+	{
 		if(Instance != null && Instance != this)
 		{
 			Destroy(gameObject);
@@ -40,6 +40,10 @@ public class MapController : MonoBehaviour {
 		{
 			Instance = this;
 		}
+	}
+
+
+	void Start () {
 
 		CreateMap();
 
