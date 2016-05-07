@@ -79,13 +79,13 @@ public class TouchController : MonoBehaviour  {
 							// We activate the buy turret UI
 							if(!selectedTile.HasTurretOverTile)
 							{
-								UIController.Instance.SetActive_TileMenu(true, selectedTile);
+								UIController.Instance.SetActive_TileMenu(true);
 								longPressTime = touchTimeInstantiate;
 
 							}
 							else
 							{
-								UIController.Instance.SetActive_TowerMenu(true, selectedTile);
+								UIController.Instance.SetActive_TowerMenu(true);
 								longPressTime = touchTimeInstantiate;
 							}
 				

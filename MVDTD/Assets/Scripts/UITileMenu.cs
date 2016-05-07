@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class UIBuyingTurretController : MonoBehaviour {
+public class UITileMenu : MonoBehaviour {
 
 
 	[SerializeField]
@@ -29,7 +29,8 @@ public class UIBuyingTurretController : MonoBehaviour {
 			{
 			case "normalturret":
 
-				tileToPlace.SetTurretOnTile(turretList[0]);
+				tileToPlace.SetTurretOnTile (turretList [0]);
+				UIController.Instance.SetActive_TileMenu (false);
 
 				break;
 			}

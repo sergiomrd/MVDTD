@@ -6,6 +6,14 @@ public class FloorTile : MonoBehaviour {
 
 	private bool hasTurretOverTile = false;
 
+	private GameObject turretInstance;
+
+	public GameObject TurretInstance {
+		get {
+			return turretInstance;
+		}
+	}
+
 	public bool HasTurretOverTile {
 		get {
 			return hasTurretOverTile;
@@ -62,7 +70,7 @@ public class FloorTile : MonoBehaviour {
 		GameObject turretToSet = turret;
 
 		// Sets the turret and makes the layers right
-		GameObject turretInstance = Instantiate(turretToSet, transform.position, Quaternion.identity) as GameObject;
+		turretInstance = Instantiate(turretToSet, transform.position, Quaternion.identity) as GameObject;
 		turret.GetComponent<SpriteRenderer>().sortingOrder = YID * -1;
 		hasTurretOverTile = true;
 

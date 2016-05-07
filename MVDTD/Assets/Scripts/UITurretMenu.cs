@@ -12,4 +12,15 @@ public class UITurretMenu : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void SellTurret()
+	{
+		FloorTile selectedTile = TouchController.Instance.SelectedTile;
+		UIController.Instance.SetActive_TowerMenu (false);
+		selectedTile.HasTurretOverTile = false;
+		Destroy (selectedTile.TurretInstance.gameObject);
+
+
+
+	}
 }

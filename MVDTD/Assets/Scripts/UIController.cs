@@ -14,8 +14,7 @@ public class UIController : MonoBehaviour {
 	[SerializeField]
 	private List<GameObject> UIPanelList = new List<GameObject>();
 
-	[SerializeField]
-	private GameObject tileMenu;
+	private FloorTile selectedTile;
 
 	void Awake()
 	{
@@ -62,19 +61,26 @@ public class UIController : MonoBehaviour {
 			return UIPanelList[0];
 
 			break;
+		
+		case UItype.TurretMenu:
+
+			return UIPanelList [1];
+
+			break;
 		}
 
 		return null;
 	}
 
-	public void SetActive_TileMenu(bool choice, FloorTile tile)
+	public void SetActive_TileMenu(bool choice)
 	{
-		tileMenu = GetChildPanel(UItype.TileMenu);
+		GameObject tileMenu = GetChildPanel(UItype.TileMenu);
+		selectedTile = TouchController.Instance.SelectedTile;
 
 		if(choice)
 		{
 			tileMenu.SetActive(true);
-			tileMenu.transform.position = new Vector3(tile.X,tile.Y);
+			tileMenu.transform.position = new Vector3(selectedTile.X,selectedTile.Y);
 		}
 		else
 		{
@@ -82,18 +88,19 @@ public class UIController : MonoBehaviour {
 		}
 	}
 
-	public void SetActive_TowerMenu(bool choice, FloorTile tile)
+	public void SetActive_TowerMenu(bool choice)
 	{
-		tileMenu = GetChildPanel(UItype.TileMenu);
+		GameObject towerMenu = GetChildPanel(UItype.TurretMenu);
+		selectedTile = TouchController.Instance.SelectedTile;
 
 		if(choice)
 		{
-			tileMenu.SetActive(true);
-			tileMenu.transform.position = new Vector3(tile.X,tile.Y);
+			towerMenu.SetActive(true);
+			towerMenu.transform.position = new Vector3(selectedTile.X,selectedTile.Y);;
 		}
 		else
 		{
-			tileMenu.SetActive(false);
+			towerMenu.SetActive(false);
 		}
 	}
 }
