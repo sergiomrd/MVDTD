@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class FloorTile : MonoBehaviour {
 
-	[SerializeField]
-	private GameObject buyTurretUI;
-
 	private bool hasTurretOverTile = false;
 
 	public bool HasTurretOverTile {
@@ -71,20 +68,6 @@ public class FloorTile : MonoBehaviour {
 
 	}
 
-	public void ActiveBuyTurretUI(bool choice)
-	{
-		buyTurretUI = UIController.Instance.GetChildPanel(UIController.UItype.BuyTurret);
 
-		if(choice)
-		{
-			buyTurretUI.SetActive(true);
-			buyTurretUI.transform.position = new Vector3(x,y);
-			buyTurretUI.GetComponent<UIBuyingTurretController>().ActiveTile = gameObject;
-		}
-		else
-		{
-			buyTurretUI.SetActive(false);
-		}
-	}
 
 }

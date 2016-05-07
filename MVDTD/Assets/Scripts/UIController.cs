@@ -7,12 +7,15 @@ public class UIController : MonoBehaviour {
 
 	public static UIController Instance {get; private set;}
 
-	public enum UItype {BuyTurret}
+	public enum UItype {TileMenu, TurretMenu}
 
 	private UItype uiType;
 
 	[SerializeField]
 	private List<GameObject> UIPanelList = new List<GameObject>();
+
+	[SerializeField]
+	private GameObject tileMenu;
 
 	void Awake()
 	{
@@ -46,7 +49,6 @@ public class UIController : MonoBehaviour {
 			for(int i = 0; i < gameObject.transform.childCount; i++)
 			{
 				UIPanelList.Add(gameObject.transform.GetChild(i).gameObject);
-				Debug.Log(UIPanelList[i].name);
 			}
 		}
 	}
@@ -55,7 +57,7 @@ public class UIController : MonoBehaviour {
 	{
 		switch(type)
 		{
-		case UItype.BuyTurret:
+		case UItype.TileMenu:
 
 			return UIPanelList[0];
 
@@ -64,4 +66,35 @@ public class UIController : MonoBehaviour {
 
 		return null;
 	}
+
+	public void SetActive_TileMenu(bool choice, FloorTile tile)
+	{
+		tileMenu = GetChildPanel(UItype.TileMenu);
+
+		if(choice)
+		{
+			tileMenu.SetActive(true);
+			tileMenu.transform.position = new Vector3(tile.X,tile.Y);
+		}
+		else
+		{
+			tileMenu.SetActive(false);
+		}
+	}
+
+	public void SetActive_TowerMenu(bool choice, FloorTile tile)
+	{
+		tileMenu = GetChildPanel(UItype.TileMenu);
+
+		if(choice)
+		{
+			tileMenu.SetActive(true);
+			tileMenu.transform.position = new Vector3(tile.X,tile.Y);
+		}
+		else
+		{
+			tileMenu.SetActive(false);
+		}
+	}
 }
+
