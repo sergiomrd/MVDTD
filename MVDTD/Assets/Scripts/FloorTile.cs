@@ -63,6 +63,7 @@ public class FloorTile : MonoBehaviour {
 	{
 		x = gameObject.transform.position.x;
 		y = gameObject.transform.position.y;
+
 	}
 		
 	public void SetTurretOnTile(GameObject turret)

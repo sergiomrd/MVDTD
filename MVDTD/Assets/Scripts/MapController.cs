@@ -19,6 +19,18 @@ public class MapController : MonoBehaviour {
 	[SerializeField]
 	private int mapHeight = 5;
 
+	public int MapHeight {
+		get {
+			return mapHeight;
+		}
+	}
+
+	public int MapWidth {
+		get {
+			return mapWidth;
+		}
+	}
+
 	// Offset of the tiles
 	private float yOffset = 0.375f;
 	private float xOffset = 0.78f;
@@ -40,12 +52,14 @@ public class MapController : MonoBehaviour {
 		{
 			Instance = this;
 		}
+
+		CreateMap();
 	}
 
 
 	void Start () {
 
-		CreateMap();
+
 
 	}
 
@@ -82,9 +96,5 @@ public class MapController : MonoBehaviour {
 			}
 		}
 	}
-
-	void GetTileAt(int x, int y)
-	{
 		
-	}
 }
