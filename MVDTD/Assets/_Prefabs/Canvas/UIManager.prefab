@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretList:
-  - {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
+  - {fileID: 178850, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
 --- !u!114 &11467288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretList:
-  - {fileID: 199342, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
+  - {fileID: 0}
 --- !u!114 &11491776
 MonoBehaviour:
   m_ObjectHideFlags: 1

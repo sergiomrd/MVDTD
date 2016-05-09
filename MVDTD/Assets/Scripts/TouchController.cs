@@ -15,6 +15,8 @@ public class TouchController : MonoBehaviour  {
 	[SerializeField]
 	private float touchTimeInstantiate = 0.5f;
 
+	private bool hasMoved = false;
+
 	// Saves the hitInfo
 	private RaycastHit hitInfo;
 
@@ -64,6 +66,7 @@ public class TouchController : MonoBehaviour  {
 				// If we stay the touch in that position
 				case TouchPhase.Stationary:
 
+					/*
 					// Long Press time decreases
 					longPressTime -= Time.deltaTime;
 
@@ -94,7 +97,7 @@ public class TouchController : MonoBehaviour  {
 
 
 					}
-
+					*/
 					break;
 
 				case TouchPhase.Began:
@@ -106,7 +109,8 @@ public class TouchController : MonoBehaviour  {
 					if(Physics.Raycast(ray, out hitInfo))
 					{
 						
-						Debug.Log(hitInfo.collider.name);
+						//Debug.Log(hitInfo.collider.name);
+
 
 					}
 
@@ -114,12 +118,45 @@ public class TouchController : MonoBehaviour  {
 				
 				case TouchPhase.Moved:
 
+					//TODO: It works but you can do it better
+					if(touches[0].deltaPosition.x > 10 || touches[0].deltaPosition.x < -10)
+					{
+						hasMoved = true;
+					}
+
 					longPressTime = touchTimeInstantiate;
 
 					break;
 
 				case TouchPhase.Ended:
-					
+
+					if(!hasMoved)
+					{
+						if(hitInfo.collider != null && hitInfo.collider.GetComponent<FloorTile>() != null)
+						{
+							
+							// Store the selected tile
+							selectedTile = hitInfo.collider.GetComponent<FloorTile>();
+
+							// If the tile doesn't have any turret built
+							// We activate the buy turret UI
+							if(!selectedTile.HasTurretOverTile)
+							{
+								UIController.Instance.SetActive_TileMenu(true);
+								longPressTime = touchTimeInstantiate;
+
+							}
+							else
+							{
+								UIController.Instance.SetActive_TowerMenu(true);
+								longPressTime = touchTimeInstantiate;
+
+							}
+						}
+					}
+
+
+					hasMoved = false;
 					longPressTime = touchTimeInstantiate;
 
 					break;
