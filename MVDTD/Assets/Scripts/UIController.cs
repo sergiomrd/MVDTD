@@ -2,63 +2,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIController : MonoBehaviour {
+public class UIController : MonoBehaviour
+{
 
-	public static UIController Instance {get; private set;}
+	// Create an instance of UIController
+	public static UIController Instance { get; private set; }
 
-	public enum UItype {TileMenu, TurretMenu}
+	// Type of GUI menus and stuff
+	public enum UItype
+	{
+		TileMenu,
+		TurretMenu
+
+	}
 
 	private UItype uiType;
 
-	[SerializeField]
-	private List<GameObject> UIPanelList = new List<GameObject>();
+	public EventSystem eventsystem;
 
+	// We get all the GUI childrens
+	[SerializeField]
+	private List<GameObject> UIPanelList = new List<GameObject> ();
+
+	// Stores the selected tile
 	private FloorTile selectedTile;
 
-	void Awake()
-	{
-		if(Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
+
+	[SerializeField]
+	private GameObject activeMenu;
+
+	public GameObject ActiveMenu {
+		get {
+			return activeMenu;
 		}
-		else
-		{
+		set {
+			activeMenu = value;
+		}
+	}
+
+	void Awake ()
+	{
+		if (Instance != null && Instance != this) {
+			Destroy (gameObject);
+		} else {
 			Instance = this;
 		}
 
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-		GetAllChildPanels();
+		eventsystem = EventSystem.current;
+		GetAllChildPanels ();
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	void GetAllChildPanels()
+	/// <summary>
+	/// Gets all child GUI.
+	/// </summary>
+	void GetAllChildPanels ()
 	{
-		if(gameObject.transform.childCount > 0)
-		{
-			for(int i = 0; i < gameObject.transform.childCount; i++)
-			{
-				UIPanelList.Add(gameObject.transform.GetChild(i).gameObject);
+		if (gameObject.transform.childCount > 0) {
+			for (int i = 0; i < gameObject.transform.childCount; i++) {
+				UIPanelList.Add (gameObject.transform.GetChild (i).gameObject);
 			}
 		}
 	}
 
-	public GameObject GetChildPanel(UItype type)
+	/// <summary>
+	/// Gets the UI selected.
+	/// </summary>
+	/// <returns>the UI Gameobject.</returns>
+	/// <param name="type">Type.</param>
+	public GameObject GetChildPanel (UItype type)
 	{
-		switch(type)
-		{
+		switch (type) {
 		case UItype.TileMenu:
 
-			return UIPanelList[0];
+			return UIPanelList [0];
 
 			break;
 		
@@ -72,35 +91,51 @@ public class UIController : MonoBehaviour {
 		return null;
 	}
 
-	public void SetActive_TileMenu(bool choice)
+	/// <summary>
+	/// Sets the active tile menu.
+	/// </summary>
+	/// <param name="choice">If set to <c>true</c> choice.</param>
+	public void SetActive_TileMenu (bool choice)
 	{
-		GameObject tileMenu = GetChildPanel(UItype.TileMenu);
-		selectedTile = TouchController.Instance.SelectedTile;
+		// Get the Tile Menu UI
+		GameObject tileMenu = GetChildPanel (UItype.TileMenu);
 
-		if(choice)
-		{
-			tileMenu.SetActive(true);
-			tileMenu.transform.position = new Vector3(selectedTile.X,selectedTile.Y);
-		}
-		else
-		{
-			tileMenu.SetActive(false);
+		// Get the selected tile
+		selectedTile = TouchLeanController.Instance.SelectedTile;
+
+		if (choice) {
+			// Set the menu visible and makes the menu position over the selected tile
+			activeMenu = tileMenu;
+			tileMenu.SetActive (true);
+			tileMenu.transform.position = new Vector3 (selectedTile.X, selectedTile.Y);
+		
+
+		} else {
+			
+			activeMenu = null;
+			tileMenu.SetActive (false);
+		
+
 		}
 	}
 
-	public void SetActive_TowerMenu(bool choice)
+	public void SetActive_TowerMenu (bool choice)
 	{
-		GameObject towerMenu = GetChildPanel(UItype.TurretMenu);
-		selectedTile = TouchController.Instance.SelectedTile;
+		GameObject towerMenu = GetChildPanel (UItype.TurretMenu);
+		selectedTile = TouchLeanController.Instance.SelectedTile;
 
-		if(choice)
-		{
-			towerMenu.SetActive(true);
-			towerMenu.transform.position = new Vector3(selectedTile.X,selectedTile.Y);;
-		}
-		else
-		{
-			towerMenu.SetActive(false);
+		if (choice) {
+			// Set the menu visible and makes the menu position over the selected tile
+			activeMenu = towerMenu;
+			towerMenu.SetActive (true);
+			towerMenu.transform.position = new Vector3 (selectedTile.X, selectedTile.Y);
+		
+
+		} else {
+			
+			activeMenu = null;
+			towerMenu.SetActive (false);
+
 		}
 	}
 }

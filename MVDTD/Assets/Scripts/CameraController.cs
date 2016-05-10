@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
 	// Bool to block the camera movement
 	[SerializeField]
@@ -21,32 +22,29 @@ public class CameraController : MonoBehaviour {
 	private float speedMovement;
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
 		// Get the touches
-		Touch [] touches = Input.touches;
+		Touch[] touches = Input.touches;
 
-		if(touches.Length > 0)
-		{
-			if(touches.Length == 1)
-			{
+		if (touches.Length > 0) {
+			if (touches.Length == 1) {
 				//Get the phase of the first touch
-				TouchPhase phase = touches[0].phase;
+				TouchPhase phase = touches [0].phase;
 
-				switch(phase)
-				{
+				switch (phase) {
 				case TouchPhase.Moved:
 
 					// If the camera isn't blocked
-					if(!blockCameraMovement)
-					{
+					if (!blockCameraMovement) {
 						// Create a movement vector that saves the delta position and translate it
-						Vector2 movement = Input.touches[0].deltaPosition * speedMovement * Time.deltaTime;
-						transform.Translate(movement.x * -1 , 0,0);
+						Vector2 movement = Input.touches [0].deltaPosition * speedMovement * Time.deltaTime;
+						transform.Translate (movement.x * -1, 0, 0);
 
 						// We clamp the area of the camera movement and check the position 
 						Vector3 pos = transform.position;
-						pos.x = Mathf.Clamp(transform.position.x, 2, 6);
+						pos.x = Mathf.Clamp (transform.position.x, 2, 6);
 						transform.position = pos;
 					}
 

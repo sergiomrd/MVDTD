@@ -2,7 +2,13 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class FloorTile : MonoBehaviour {
+public class FloorTile : MonoBehaviour
+{
+	#region Private variables
+
+	/*
+	 * PRIVATE VARIABLES
+	*/
 
 	// Bool to know if the tile has some turret on it
 	private bool hasTurretOverTile = false;
@@ -13,8 +19,47 @@ public class FloorTile : MonoBehaviour {
 	// The actual position of the tile in World Space
 	private float x, y;
 
+	// The IDs of the positions not in World Space
 	[SerializeField]
 	private int xID, yID;
+
+	#endregion
+
+	#region Public variables
+
+	/*
+	 * PUBLIC VARIABLES
+	*/
+
+	#endregion
+
+	void Start ()
+	{
+		x = gameObject.transform.position.x;
+		y = gameObject.transform.position.y;
+	}
+
+
+	/// <summary>
+	/// Sets the turret on tile.
+	/// </summary>
+	/// <param name="turret">Turret.</param>
+	public void SetTurretOnTile (GameObject turret)
+	{
+		GameObject turretToSet = turret;
+
+		// Sets the turret and makes the layers right
+		turretInstance = Instantiate (turretToSet, transform.position, Quaternion.identity) as GameObject;
+		turretInstance.GetComponent<SpriteRenderer> ().sortingOrder = yID * -1;
+		hasTurretOverTile = true;
+
+	}
+
+
+
+	/*
+	 * PROPERTIES
+	*/
 
 	public int YID {
 		get {
@@ -44,24 +89,6 @@ public class FloorTile : MonoBehaviour {
 		get {
 			return y;
 		}
-	}
-
-	void Start()
-	{
-		x = gameObject.transform.position.x;
-		y = gameObject.transform.position.y;
-
-	}
-		
-	public void SetTurretOnTile(GameObject turret)
-	{
-		GameObject turretToSet = turret;
-
-		// Sets the turret and makes the layers right
-		turretInstance = Instantiate(turretToSet, transform.position, Quaternion.identity) as GameObject;
-		turretInstance.GetComponent<SpriteRenderer>().sortingOrder = yID * -1;
-		hasTurretOverTile = true;
-
 	}
 
 	public GameObject TurretInstance {

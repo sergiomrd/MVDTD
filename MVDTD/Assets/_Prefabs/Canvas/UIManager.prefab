@@ -11,6 +11,7 @@ GameObject:
   - 222: {fileID: 22284356}
   - 114: {fileID: 11479944}
   - 114: {fileID: 11473652}
+  - 114: {fileID: 11462894}
   m_Layer: 5
   m_Name: Button - Sell turret
   m_TagString: Untagged
@@ -28,7 +29,7 @@ GameObject:
   - 224: {fileID: 22440184}
   - 222: {fileID: 22262890}
   - 114: {fileID: 11491776}
-  - 225: {fileID: 22567872}
+  - 225: {fileID: 22537958}
   - 114: {fileID: 11422028}
   m_Layer: 5
   m_Name: GUI - Tile menu
@@ -36,7 +37,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &138614
 GameObject:
   m_ObjectHideFlags: 1
@@ -48,6 +49,7 @@ GameObject:
   - 222: {fileID: 22286484}
   - 114: {fileID: 11480610}
   - 114: {fileID: 11467288}
+  - 114: {fileID: 11467056}
   m_Layer: 5
   m_Name: Button - Buy normal
   m_TagString: Untagged
@@ -85,14 +87,14 @@ GameObject:
   - 222: {fileID: 22274566}
   - 114: {fileID: 11470304}
   - 225: {fileID: 22519558}
-  - 114: {fileID: 11481970}
+  - 114: {fileID: 11420868}
   m_Layer: 5
   m_Name: GUI - Turret menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &11401214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,7 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8673965c6e29fc4ebe30f9bbe1388d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventsystem: {fileID: 0}
   UIPanelList: []
+  activeMenu: {fileID: 0}
 --- !u!114 &11420332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,6 +130,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &11420868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1455b1045830d499ea117dbf90b002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11422028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,6 +154,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretList:
   - {fileID: 178850, guid: 392412a9f6a443e43aa6274c00dc942b, type: 2}
+--- !u!114 &11462894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11420868}
+          m_MethodName: SellTurret
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
+--- !u!114 &11467056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11422028}
+          m_MethodName: BuyTurret
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: normalturret
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!114 &11467288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
+    m_SelectOnUp: {fileID: 11467288}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -177,18 +252,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11480610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11422028}
-        m_MethodName: BuyTurret
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: normalturret
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &11470304
@@ -313,19 +377,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11481970
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d593f219ae89ff40b7640fd9f287fe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turretList:
-  - {fileID: 0}
 --- !u!114 &11491776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -345,7 +396,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -425,10 +476,10 @@ RectTransform:
   - {fileID: 22427834}
   m_Father: {fileID: 22453692}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00001513958, y: 0.0000017285347}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 748, y: -664}
+  m_SizeDelta: {x: 1011.20996, y: 673.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22427834
 RectTransform:
@@ -444,7 +495,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 200.00002}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22440184
@@ -460,10 +511,10 @@ RectTransform:
   - {fileID: 22478416}
   m_Father: {fileID: 22453692}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -378, y: -1369.225}
+  m_SizeDelta: {x: 1011.20996, y: 673.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22453692
 RectTransform:
@@ -481,8 +532,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.65, y: 0.84}
-  m_SizeDelta: {x: 977.6, y: 610.6}
+  m_AnchoredPosition: {x: 2.41, y: 1.4}
+  m_SizeDelta: {x: 3579.21, y: 2234.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22478416
 RectTransform:
@@ -498,7 +549,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000015258789, y: -200.00002}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &22519558
@@ -512,7 +563,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!225 &22567872
+--- !u!225 &22537958
 CanvasGroup:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

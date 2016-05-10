@@ -2,39 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UITileMenu : MonoBehaviour {
-
+public class UITileMenu : MonoBehaviour
+{
 
 	[SerializeField]
-	private List<GameObject> turretList = new List<GameObject>();
+	private List<GameObject> turretList = new List<GameObject> ();
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	public void BuyTurret(string type)
+	public void BuyTurret (string type)
 	{
-		FloorTile tileToPlace = TouchController.Instance.SelectedTile;
+		FloorTile tileToPlace = TouchLeanController.Instance.SelectedTile;
 
-		if(!tileToPlace.HasTurretOverTile)
-		{
-			switch(type.ToLower())
-			{
-			case "normalturret":
+		switch (type.ToLower ()) {
+		case "normalturret":
 
-				tileToPlace.SetTurretOnTile (turretList [0]);
-				UIController.Instance.SetActive_TileMenu (false);
+			tileToPlace.SetTurretOnTile (turretList [0]);
+			UIController.Instance.SetActive_TileMenu (false);
 
-				break;
-			}
+
+			break;
 		}
+		
 
 			
 	}

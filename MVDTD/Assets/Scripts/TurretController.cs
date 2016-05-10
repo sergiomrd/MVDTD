@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TurretController : MonoBehaviour {
+public class TurretController : MonoBehaviour
+{
 
 	//The amount of time wich the turret shoots the next shoot
 	public float fireRate;
@@ -20,38 +21,37 @@ public class TurretController : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 
 		//Initialize the shoot range to the end of the map
-		shootRange = MapController.Instance.FloorTilesList[MapController.Instance.FloorTilesList.Count-3].transform.localPosition.x;
+		shootRange = MapController.Instance.FloorTilesList [MapController.Instance.FloorTilesList.Count - 3].transform.localPosition.x;
 
 		//Invokes the method shoot at 0.5f and every fire rate
-		InvokeRepeating("Shoot", 0.5f, fireRate);
+		InvokeRepeating ("Shoot", 0.5f, fireRate);
 	}
 
-	void Update()
+	void Update ()
 	{
-		Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y + 0.5f), new Vector3(shootRange, 0), Color.blue);
+		Debug.DrawRay (new Vector3 (transform.localPosition.x, transform.localPosition.y + 0.5f), new Vector3 (shootRange, 0), Color.blue);
 	}
 
 	// Method to know if the turret have any enemy ahead
-	bool EnemyInFront()
+	bool EnemyInFront ()
 	{
 		//Origin of the Raycast
-		Vector3 raycastOrigin = new Vector3(transform.localPosition.x, transform.localPosition.y + 0.5f);
+		Vector3 raycastOrigin = new Vector3 (transform.localPosition.x, transform.localPosition.y + 0.5f);
 
 		//Get all the raycasts hits
-		RaycastHit [] hits = Physics.RaycastAll(raycastOrigin, transform.right, shootRange, ~layerMask);
+		RaycastHit[] hits = Physics.RaycastAll (raycastOrigin, transform.right, shootRange, ~layerMask);
 
 
 		//We go through all the hits
-		for(int i = 0; i < hits.Length; i++)
-		{
-			RaycastHit hit = hits[i];
+		for (int i = 0; i < hits.Length; i++) {
+			RaycastHit hit = hits [i];
 
 			//If we hit some enemy, we have an enemy ahead
-			if(hit.collider != null && hit.collider.GetComponent<EnemyController>())
-			{
+			if (hit.collider != null && hit.collider.GetComponent<EnemyController> ()) {
 				return true;
 			}
 		}
@@ -60,12 +60,11 @@ public class TurretController : MonoBehaviour {
 	}
 
 	//TODO This has to be on the Behavior of the Turret
-	void Shoot()
+	void Shoot ()
 	{
 		//If we have some enemy in Front, we shoot our ammo
-		if(EnemyInFront())
-		{
-			GameObject bullet = Instantiate(ammo, new Vector3(transform.localPosition.x, transform.localPosition.y + 0.5f), Quaternion.identity) as GameObject;
+		if (EnemyInFront ()) {
+			GameObject bullet = Instantiate (ammo, new Vector3 (transform.localPosition.x, transform.localPosition.y + 0.5f), Quaternion.identity) as GameObject;
 		}
 	}
 		

@@ -1,34 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletController : MonoBehaviour {
+public class BulletController : MonoBehaviour
+{
 
-	// Set of the bullet speed movement
+	/*
+	 * PUBLIC VARIABLES
+	*/
+
+	// Sets the bullet speed
 	public float speedMovement;
+
+	/*
+	 * PRIVATE VARIABLES
+	*/
 
 	private Rigidbody rb;
 
-	void Start () {
-	
-		rb = gameObject.GetComponent<Rigidbody>();
-
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-	
-		// We set the movement of the Bullet
-		Vector3 movement = Vector3.right * speedMovement * Time.deltaTime;
-		rb.MovePosition(rb.position + movement);
-
-	}
-
-	void OnTriggerEnter(Collider other)
+	void Start ()
 	{
-		//Hit an Enemy
-		if(other.GetComponent<EnemyController>() != null)
-		{
-			Destroy(other.gameObject);
+		
+		rb = gameObject.GetComponent<Rigidbody> ();
+
+	}
+
+	void FixedUpdate ()
+	{
+	
+		// We set the movement of the Bullet to the right every frame
+		Vector3 movement = Vector3.right * speedMovement * Time.deltaTime;
+		rb.MovePosition (rb.position + movement);
+
+	}
+
+	/// <summary>
+	/// Raises the trigger enter event.
+	/// </summary>
+	/// <param name="other">Other.</param>
+	void OnTriggerEnter (Collider other)
+	{
+		// If we hit an enemy
+		if (other.GetComponent<EnemyController> () != null) {
+			Destroy (other.gameObject);
 		}
 	}
 }

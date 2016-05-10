@@ -2,16 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MapController : MonoBehaviour {
+public class MapController : MonoBehaviour
+{
 
 	// Making an instance of the Map
-	public static MapController Instance {get; private set;}
+	public static MapController Instance { get; private set; }
 
 	// TODO: Should be a list of prefabs to instantiate
 	public GameObject tilePrefab;
 
 	// List of the tiles of the map
-	private List<GameObject> floorTilesList = new List<GameObject>();
+	private List<GameObject> floorTilesList = new List<GameObject> ();
 
 	// Map size
 	[SerializeField]
@@ -42,28 +43,26 @@ public class MapController : MonoBehaviour {
 		}
 	}
 
-	void Awake()
+	void Awake ()
 	{
-		if(Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
+		if (Instance != null && Instance != this) {
+			Destroy (gameObject);
+		} else {
 			Instance = this;
 		}
 
-		CreateMap();
+		CreateMap ();
 	}
 
 
-	void Start () {
+	void Start ()
+	{
 
 
 
 	}
 
-	void CreateMap()
+	void CreateMap ()
 	{
 		//TODO: Adapt for more tile types
 		for (int x = 0; x < mapWidth; x++) {
@@ -72,24 +71,21 @@ public class MapController : MonoBehaviour {
 
 			for (int y = 0; y < mapHeight; y++) {
 				
-				if(y != 0)
-				{ 
-					GameObject normalTile = Instantiate(tilePrefab, new Vector2((x * xOffset) + (newXOffset), y * yOffset), Quaternion.identity) as GameObject;
-					normalTile.transform.GetChild(0).GetComponent<FloorTile>().XID = x;
-					normalTile.transform.GetChild(0).GetComponent<FloorTile>().YID = y;
-					newXOffset += xOffset/2;
-					normalTile.transform.SetParent(this.gameObject.transform);
+				if (y != 0) { 
+					GameObject normalTile = Instantiate (tilePrefab, new Vector2 ((x * xOffset) + (newXOffset), y * yOffset), Quaternion.identity) as GameObject;
+					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().XID = x;
+					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().YID = y;
+					newXOffset += xOffset / 2;
+					normalTile.transform.SetParent (this.gameObject.transform);
 					normalTile.name = ("Tile" + "_" + x + "_" + y);
-					floorTilesList.Add(normalTile);
-				}
-				else
-				{
-					GameObject normalTile = Instantiate(tilePrefab, new Vector2(x * xOffset, y * yOffset), Quaternion.identity) as GameObject;
-					normalTile.transform.GetChild(0).GetComponent<FloorTile>().XID = x;
-					normalTile.transform.GetChild(0).GetComponent<FloorTile>().YID = y;
-					normalTile.transform.SetParent(this.gameObject.transform);
+					floorTilesList.Add (normalTile);
+				} else {
+					GameObject normalTile = Instantiate (tilePrefab, new Vector2 (x * xOffset, y * yOffset), Quaternion.identity) as GameObject;
+					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().XID = x;
+					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().YID = y;
+					normalTile.transform.SetParent (this.gameObject.transform);
 					normalTile.name = ("Tile" + "_" + x + "_" + y);
-					floorTilesList.Add(normalTile);
+					floorTilesList.Add (normalTile);
 				}
 					
 
