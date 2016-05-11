@@ -17,6 +17,8 @@ public class BulletController : MonoBehaviour
 
 	private Rigidbody rb;
 
+	private UIGameplay uiGameplay;
+
 	void Start ()
 	{
 		
@@ -41,6 +43,8 @@ public class BulletController : MonoBehaviour
 	{
 		// If we hit an enemy
 		if (other.GetComponent<EnemyController> () != null) {
+			
+			GameManagerController.Instance.Money += other.GetComponent<EnemyController>().MoneyCost;
 			Destroy (other.gameObject);
 		}
 	}

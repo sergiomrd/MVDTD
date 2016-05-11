@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMovement: 0.3
+  moneyCost: 20
 --- !u!212 &21221852
 SpriteRenderer:
   m_ObjectHideFlags: 1

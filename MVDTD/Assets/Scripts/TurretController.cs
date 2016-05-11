@@ -19,6 +19,23 @@ public class TurretController : MonoBehaviour
 	[SerializeField]
 	private GameObject ammo;
 
+	[SerializeField]
+	private int moneyCost;
+
+	public int MoneyCost {
+		get {
+			return moneyCost;
+		}
+	}
+
+	[SerializeField]
+	private int sellCost;
+
+	public int SellCost {
+		get {
+			return sellCost;
+		}
+	}
 
 	// Use this for initialization
 	void Start ()

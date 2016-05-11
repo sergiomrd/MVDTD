@@ -18,7 +18,7 @@ TagManager:
   - Floor
   - Enemys
   - Turrets
-  - 
+  - Ammo
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Turrets
     uniqueID: 68303623
+    locked: 0
+  - name: Ammo
+    uniqueID: 4100214035
     locked: 0
   - name: Enemys
     uniqueID: 2159248235

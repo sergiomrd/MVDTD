@@ -14,7 +14,8 @@ public class UIController : MonoBehaviour
 	public enum UItype
 	{
 		TileMenu,
-		TurretMenu
+		TurretMenu,
+		GameplayUI
 
 	}
 
@@ -84,6 +85,12 @@ public class UIController : MonoBehaviour
 		case UItype.TurretMenu:
 
 			return UIPanelList [1];
+
+			break;
+		
+		case UItype.GameplayUI:
+			
+			return UIPanelList[2];
 
 			break;
 		}

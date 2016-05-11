@@ -52,22 +52,22 @@ public class TouchLeanController : MonoBehaviour {
 	{
 		
 
-			if(!finger.IsOverGui)
-			{
-				Ray ray = finger.GetRay();
+		if(!finger.IsOverGui)
+		{
+			Ray ray = finger.GetRay();
 
-			if(Physics.Raycast(ray, out hitInfo, Mathf.Infinity, ~layerMask))
-				{
-					Debug.Log(hitInfo.collider.name);
-				}
+			if(!Physics.Raycast(ray, out hitInfo, Mathf.Infinity, ~layerMask) && UIController.Instance.ActiveMenu != null)
+			{
+				UIController.Instance.ActiveMenu.SetActive(false);
+				UIController.Instance.ActiveMenu = null;
 			}
+		}
 		
 
 	}
 	void OnFingerUp(Lean.LeanFinger finger)
 	{
 
-		Debug.Log(finger.StartedOverGui);
 		if(finger.TotalDeltaScreenPosition.x < 5 && finger.TotalDeltaScreenPosition.x > -5)
 		{
 			

@@ -22,6 +22,7 @@ public class UITurretMenu : MonoBehaviour
 		FloorTile selectedTile = TouchLeanController.Instance.SelectedTile;
 		UIController.Instance.SetActive_TowerMenu (false);
 		selectedTile.HasTurretOverTile = false;
+		GameManagerController.Instance.Money += selectedTile.TurretInstance.GetComponent<TurretController>().SellCost;
 		Destroy (selectedTile.TurretInstance.gameObject);
 	
 	}

@@ -15,17 +15,36 @@ public class UITileMenu : MonoBehaviour
 		FloorTile tileToPlace = TouchLeanController.Instance.SelectedTile;
 
 		switch (type.ToLower ()) {
+
 		case "normalturret":
 
-			tileToPlace.SetTurretOnTile (turretList [0]);
-			UIController.Instance.SetActive_TileMenu (false);
-
+			if(canBuy(turretList[0]))
+			{
+				tileToPlace.SetTurretOnTile (turretList [0]);
+				UIController.Instance.SetActive_TileMenu (false);
+			}
+			else
+			{
+				Debug.Log("No money");
+			}
 
 			break;
 		}
-		
-
 			
+	}
+		
+	private bool canBuy(GameObject turretToBuy)
+	{
+		int currentMoney = GameManagerController.Instance.Money;
+		int moneyCost = turretToBuy.GetComponent<TurretController>().MoneyCost;
+
+		if(currentMoney >= moneyCost)
+		{
+			GameManagerController.Instance.Money -= moneyCost;
+			return true;
+		}
+
+		return false;
 	}
 		
 }

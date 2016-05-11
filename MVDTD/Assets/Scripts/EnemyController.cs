@@ -6,6 +6,15 @@ public class EnemyController : MonoBehaviour {
 	// Speed movement of the Enemy
 	public float speedMovement;
 
+	[SerializeField]
+	private int moneyCost;
+
+	public int MoneyCost {
+		get {
+			return moneyCost;
+		}
+	}
+
 	private Rigidbody rb;
 
 	// Use this for initialization
