@@ -13,7 +13,7 @@ GameObject:
   - 54: {fileID: 5470552}
   - 114: {fileID: 11401102}
   m_Layer: 11
-  m_Name: Enemy
+  m_Name: NormalEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

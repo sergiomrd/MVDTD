@@ -1,35 +1,31 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
+// Enum for the UItypes 
+public enum UItype
+{
+    TileMenu,
+    TurretMenu,
+    GameplayUI
+
+}
 
 public class UIController : MonoBehaviour
 {
-
 	// Create an instance of UIController
 	public static UIController Instance { get; private set; }
 
 	// Type of GUI menus and stuff
-	public enum UItype
-	{
-		TileMenu,
-		TurretMenu,
-		GameplayUI
-
-	}
-
+	
+    // Declaration of the UIType
 	private UItype uiType;
 
-	public EventSystem eventsystem;
-
 	// We get all the GUI childrens
-	[SerializeField]
 	private List<GameObject> UIPanelList = new List<GameObject> ();
 
 	// Stores the selected tile
 	private FloorTile selectedTile;
-
 
 	[SerializeField]
 	private GameObject activeMenu;
@@ -51,7 +47,6 @@ public class UIController : MonoBehaviour
 			Instance = this;
 		}
 
-		eventsystem = EventSystem.current;
 		GetAllChildPanels ();
 
 	}
@@ -79,20 +74,16 @@ public class UIController : MonoBehaviour
 		case UItype.TileMenu:
 
 			return UIPanelList [0];
-
-			break;
 		
 		case UItype.TurretMenu:
 
 			return UIPanelList [1];
 
-			break;
 		
 		case UItype.GameplayUI:
 			
 			return UIPanelList[2];
 
-			break;
 		}
 
 		return null;
