@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8fde0271e4278c64dbb19a1b13b9ee55
-timeCreated: 1463403554
+timeCreated: 1463414130
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,11 @@ TextureImporter:
     21300002: FloorWoodSP_1
     21300004: FloorWoodSP_2
     21300006: FloorWoodSP_3
+    21300008: FloorWoodSP_4
+    21300010: FloorWoodSP_5
+    21300012: FloorWoodSP_6
+    21300014: FloorWoodSP_7
+    21300016: FloorWoodSP_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -91,6 +96,50 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 108
+        y: 0
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: FloorWoodSP_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: FloorWoodSP_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: FloorWoodSP_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: FloorWoodSP_7
+      rect:
+        serializedVersion: 2
+        x: 252
         y: 0
         width: 36
         height: 12

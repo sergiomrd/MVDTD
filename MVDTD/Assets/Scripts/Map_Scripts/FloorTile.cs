@@ -25,7 +25,10 @@ public class FloorTile : MonoBehaviour
 	private int xID, yID;
 
     [SerializeField]
-    private Sprite normalSprite, betweenSprite;
+    private List<Sprite> floorSpritesHead;
+
+    [SerializeField]
+    private List<Sprite> floorSpritesBody;
 
     private SpriteRenderer spriteRender;
 
@@ -81,11 +84,11 @@ public class FloorTile : MonoBehaviour
 			yID = value;
             if(yID > 0)
             {
-                spriteRender.sprite = betweenSprite;
+                spriteRender.sprite = floorSpritesBody[Random.Range(0, floorSpritesBody.Count)];
             }
             else
             {
-                spriteRender.sprite = normalSprite;
+                spriteRender.sprite = floorSpritesHead[Random.Range(0,floorSpritesHead.Count)];
             }
 
             if((yID % 2 == 0 && xID % 2 == 0) || (yID % 2 == 1 && xID % 2 == 1))

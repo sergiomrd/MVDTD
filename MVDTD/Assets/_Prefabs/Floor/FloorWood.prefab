@@ -83,8 +83,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xID: 0
   yID: 0
-  normalSprite: {fileID: 21300000, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
-  betweenSprite: {fileID: 21300002, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  floorSpritesHead:
+  - {fileID: 21300000, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  - {fileID: 21300002, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  - {fileID: 21300004, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  - {fileID: 21300006, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  floorSpritesBody:
+  - {fileID: 21300008, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  - {fileID: 21300010, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  - {fileID: 21300012, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
+  - {fileID: 21300014, guid: 8fde0271e4278c64dbb19a1b13b9ee55, type: 3}
 --- !u!212 &21258434
 SpriteRenderer:
   m_ObjectHideFlags: 1
