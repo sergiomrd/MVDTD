@@ -2,24 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-// Enum for the UItypes 
-public enum UItype
-{
-    TileMenu,
-    TurretMenu,
-    GameplayUI
 
-}
 
 public class UIController : MonoBehaviour
 {
 	// Create an instance of UIController
 	public static UIController Instance { get; private set; }
 
-	// Type of GUI menus and stuff
-	
+    // Type of GUI menus and stuff
+    // Enum for the UItypes 
+    public enum UItype
+    {
+        TileMenu,
+        TurretMenu,
+        GameplayUI
+
+    }
+
     // Declaration of the UIType
-	private UItype uiType;
+    private UItype uiType;
 
 	// We get all the GUI childrens
 	private List<GameObject> UIPanelList = new List<GameObject> ();

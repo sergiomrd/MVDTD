@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class FloorTile : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class FloorTile : MonoBehaviour
 	[SerializeField]
 	private int xID, yID;
 
+    [SerializeField]
+    private Sprite normalSprite, betweenSprite;
+
+    private SpriteRenderer spriteRender;
+
 	#endregion
 
 	#region Public variables
@@ -32,9 +38,15 @@ public class FloorTile : MonoBehaviour
 	*/
 
 	#endregion
+    void Awake()
+    {
+        spriteRender = GetComponent<SpriteRenderer>();
+    }
+
 
 	void Start ()
 	{
+        
 		x = gameObject.transform.position.x;
 		y = gameObject.transform.position.y;
 	}
@@ -67,6 +79,19 @@ public class FloorTile : MonoBehaviour
 		}
 		set {
 			yID = value;
+            if(yID > 0)
+            {
+                spriteRender.sprite = betweenSprite;
+            }
+            else
+            {
+                spriteRender.sprite = normalSprite;
+            }
+
+            if((yID % 2 == 0 && xID % 2 == 0) || (yID % 2 == 1 && xID % 2 == 1))
+            {
+                spriteRender.color = new Color(255 / 255f, 215 / 255f, 215 / 255f, 255 / 255f);
+            }
 		}
 	}
 
