@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class TurretController : MonoBehaviour
 {
 
@@ -18,6 +19,8 @@ public class TurretController : MonoBehaviour
 	//The ammo to shoot
 	[SerializeField]
 	private GameObject ammo;
+    
+    private int turretLevel = 1;
 
 	[SerializeField]
 	private int moneyCost;
@@ -37,8 +40,21 @@ public class TurretController : MonoBehaviour
 		}
 	}
 
-	// Use this for initialization
-	void Start ()
+    public int TurretLevel
+    {
+        get
+        {
+            return turretLevel;
+        }
+
+        set
+        {
+            turretLevel = value;
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
 	{
 
 		//Initialize the shoot range to the end of the map

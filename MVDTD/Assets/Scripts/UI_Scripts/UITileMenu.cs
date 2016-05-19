@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class UITileMenu : MonoBehaviour
 {
-
 	[SerializeField]
 	private List<GameObject> turretList = new List<GameObject> ();
 
