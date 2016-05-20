@@ -76,7 +76,7 @@ public class TouchLeanController : MonoBehaviour {
 				if (hitInfo.collider != null && hitInfo.collider.GetComponent<FloorTile> () != null) {
 					// Store the selected tile
 					selectedTile = hitInfo.collider.GetComponent<FloorTile> ();
-
+                    Debug.Log(selectedTile.XID + "_" + selectedTile.YID);
 					if (!selectedTile.HasTurretOverTile) {
 
 						UIController.Instance.SetActive_TileMenu (true);

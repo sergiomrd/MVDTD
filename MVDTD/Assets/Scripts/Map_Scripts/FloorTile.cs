@@ -63,15 +63,24 @@ public class FloorTile : MonoBehaviour
 	{
 		GameObject turretToSet = turret;
 
+        Vector3 positionToSet = new Vector3(transform.position.x, transform.position.y, yID);
+
 		// Sets the turret and makes the layers right
-		turretInstance = Instantiate (turretToSet, transform.position, Quaternion.identity) as GameObject;
+		turretInstance = Instantiate (turretToSet, positionToSet, Quaternion.identity) as GameObject;
 
         SpriteRenderer[] spriteRenderers = turretInstance.GetComponentsInChildren<SpriteRenderer>();
 
-        for (int i = 0; i < spriteRenderers.Length; i++)
+        int mapHeight = MapController.Instance.MapHeight;
+
+      
+        for(int j = 0; j < spriteRenderers.Length; j++)
         {
-            spriteRenderers[i].sortingOrder = (yID * -1) + i;
+               
+            spriteRenderers[j].sortingOrder = -yID;
+                
         }
+
+        
 
 		hasTurretOverTile = true;
 
