@@ -60,6 +60,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		CurrentLife -= damage;
 		StartCoroutine (ChangeHitColor ());
+
 	}
 
 	IEnumerator ChangeHitColor()
