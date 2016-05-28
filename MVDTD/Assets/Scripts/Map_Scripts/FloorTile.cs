@@ -107,10 +107,9 @@ public class FloorTile : MonoBehaviour
                 spriteRender.sprite = floorSpritesHead[Random.Range(0,floorSpritesHead.Count)];
             }
 
-            if((yID % 2 == 0 && xID % 2 == 0) || (yID % 2 == 1 && xID % 2 == 1))
-            {
-                spriteRender.color = new Color(255 / 255f, 215 / 255f, 215 / 255f, 255 / 255f);
-            }
+			if ((yID % 2 == 0 && xID % 2 == 0) || (yID % 2 == 1 && xID % 2 == 1)) {
+				spriteRender.color = new Color (255 / 255f, 215 / 255f, 215 / 255f, 255 / 255f);
+			} 
 		}
 	}
 

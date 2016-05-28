@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
 	// Sets the bullet speed
 	public float speedMovement;
 
+	public int damageDeal;
+
 	/*
 	 * PRIVATE VARIABLES
 	*/
@@ -43,9 +45,11 @@ public class BulletController : MonoBehaviour
 	{
 		// If we hit an enemy
 		if (other.GetComponent<EnemyController> () != null) {
-			
-			GameManagerController.Instance.Money += other.GetComponent<EnemyController>().MoneyCost;
-			Destroy (other.gameObject);
+
+			EnemyController enemy = other.GetComponent<EnemyController>();
+			enemy.Hit (damageDeal);
+
+			Destroy (gameObject);
 		}
 	}
 }

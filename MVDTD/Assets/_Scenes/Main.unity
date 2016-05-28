@@ -95,7 +95,7 @@ GameObject:
   - 4: {fileID: 60568963}
   - 114: {fileID: 60568962}
   m_Layer: 0
-  m_Name: Map
+  m_Name: MapManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -941,9 +941,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: []
   enemy: {fileID: 147294, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
-  numberOfEnemies: 10
+  numberOfEnemies: 3
   currentEnemySpawned: 0
-  numberOfWaves: 5
+  numberOfWaves: 1
   currentWaveNumber: 0
 --- !u!4 &999806910
 Transform:
