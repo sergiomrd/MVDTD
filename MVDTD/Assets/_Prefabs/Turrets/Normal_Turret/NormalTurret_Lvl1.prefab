@@ -173,12 +173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5989b9e7d451d8f43ae27d58c8a8f064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
-  shootRange: 0
+  fireRate: 3
+  shootRange: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 5120
-  ammo: {fileID: 128364, guid: 97df983e16cf2ea41afb487cfa1adc7d, type: 2}
+  ammo: {fileID: 165842, guid: a1198fc2d643ee34482892c8c096ee33, type: 2}
   moneyCost: 40
   sellCost: 20
 --- !u!114 &11466118

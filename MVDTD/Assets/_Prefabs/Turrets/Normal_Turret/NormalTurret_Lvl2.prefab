@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092414c846d00e64e81e0fc030e47ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastUpgrade: 0
   turretUpgradeList:
   - {fileID: 136588, guid: a333c0b287a32b9458a8243fa8bad17e, type: 2}
 --- !u!114 &11471610
@@ -191,7 +192,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 5120
-  ammo: {fileID: 128364, guid: 97df983e16cf2ea41afb487cfa1adc7d, type: 2}
+  ammo: {fileID: 165842, guid: a1198fc2d643ee34482892c8c096ee33, type: 2}
   moneyCost: 80
   sellCost: 40
 --- !u!212 &21236186

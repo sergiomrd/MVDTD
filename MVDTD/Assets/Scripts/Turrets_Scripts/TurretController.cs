@@ -86,7 +86,7 @@ public class TurretController : MonoBehaviour
 	{
 		//If we have some enemy in Front, we shoot our ammo
 		if (EnemyInFront ()) {
-			GameObject bullet = Instantiate (ammo, new Vector3 (transform.localPosition.x, transform.localPosition.y + 0.5f), Quaternion.identity) as GameObject;
+			GameObject bullet = Instantiate (ammo, new Vector3 (transform.localPosition.x + 0.05f, transform.localPosition.y + 0.25f), Quaternion.identity) as GameObject;
 		}
 	}
 		

@@ -5,24 +5,84 @@ using System.Collections.Generic;
 public class EnemySpawnController : MonoBehaviour
 {
 
+	public static EnemySpawnController Instance { get; private set;}
+
 	[SerializeField]
 	private List<Vector3> spawnPoints = new List<Vector3> ();
 
 	[SerializeField]
 	private GameObject enemy;
 
+	[SerializeField]
+	private int numberOfEnemies = 10;
+
+	public int NumberOfEnemies {
+		get {
+			return numberOfEnemies;
+		}
+		set {
+			numberOfEnemies = value;
+		}
+	}
+
+	[SerializeField]
+	private int currentEnemySpawned = 0;
+
+	[SerializeField]
+	private int numberOfWaves;
+
+	public int NumberOfWaves {
+		get {
+			return numberOfWaves;
+		}
+		set {
+			numberOfWaves = value;
+		}
+	}
+
+	[SerializeField]
+	private int currentWaveNumber = 1;
+
+	private float timeBetweenSpawn = 2f;
+
+	void Awake()
+	{
+		if (Instance != null && Instance != this) {
+			Destroy (gameObject);
+		} else {
+			Instance = this;
+		}
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
-	
 		SetSpawns ();
-		SetEnemy ();
+		SetEnemyAtRandom (enemy);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		if (currentWaveNumber < numberOfWaves) 
+		{
+			if (currentEnemySpawned == numberOfEnemies) 
+			{
+				currentWaveNumber++;
+				currentEnemySpawned = 0;
+			} 
+			else 
+			{
+				timeBetweenSpawn -= Time.deltaTime;
+				if (timeBetweenSpawn <= 0 && currentEnemySpawned < numberOfEnemies) 
+				{
+					SetEnemyAtRandom (enemy);
+					timeBetweenSpawn = 2f;
+				}
+			}
+
+		}
+
 	}
 
 	void SetSpawns ()
@@ -49,6 +109,15 @@ public class EnemySpawnController : MonoBehaviour
 			GameObject enemyInstance = Instantiate (enemy, spawnPoints [i], Quaternion.identity) as GameObject;
 			enemyInstance.GetComponent<SpriteRenderer> ().sortingOrder = i;
 		}
+	}
+
+	void SetEnemyAtRandom(GameObject enemyToInstantiate)
+	{
+		int random = Random.Range (0, spawnPoints.Count);
+		Vector3 spawn = spawnPoints [random];
+		GameObject enemyInstance = Instantiate (enemyToInstantiate, spawn, Quaternion.identity) as GameObject;
+		enemyInstance.GetComponent<SpriteRenderer> ().sortingOrder = -random;
+		currentEnemySpawned++;
 	}
 
 

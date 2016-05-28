@@ -164,7 +164,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 5120
-  ammo: {fileID: 128364, guid: 97df983e16cf2ea41afb487cfa1adc7d, type: 2}
+  ammo: {fileID: 165842, guid: a1198fc2d643ee34482892c8c096ee33, type: 2}
   moneyCost: 120
   sellCost: 60
 --- !u!114 &11468662
