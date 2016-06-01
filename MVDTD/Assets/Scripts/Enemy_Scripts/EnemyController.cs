@@ -56,6 +56,7 @@ public class EnemyController : MonoBehaviour {
 	
 	}
 
+
 	public void Hit(int damage)
 	{
 		CurrentLife -= damage;
@@ -85,5 +86,13 @@ public class EnemyController : MonoBehaviour {
 		GiveMoneyToThePlayer ();
 		Destroy (gameObject);
 	}
-		
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.gameObject.GetComponent<TurretController>())
+        {
+            speedMovement = 0;
+        }
+
+    }
 }

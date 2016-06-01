@@ -63,7 +63,7 @@ public class FloorTile : MonoBehaviour
 	{
 		GameObject turretToSet = turret;
 
-        Vector3 positionToSet = new Vector3(transform.position.x, transform.position.y, yID);
+        Vector3 positionToSet = new Vector3(transform.position.x, transform.position.y, 0);
 
 		// Sets the turret and makes the layers right
 		turretInstance = Instantiate (turretToSet, positionToSet, Quaternion.identity) as GameObject;

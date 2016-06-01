@@ -129,8 +129,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.72530735, y: 0.9658232, z: 0}
-  m_Center: {x: -0.005579233, y: 0.021995068, z: 0}
+  m_Size: {x: 0.5627804, y: 0.08799642, z: 0}
+  m_Center: {x: 0.012770653, y: 0.3204683, z: 0}
 --- !u!95 &9542584
 Animator:
   serializedVersion: 3
@@ -173,7 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5989b9e7d451d8f43ae27d58c8a8f064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 3
+  maxLife: 100
+  fireRate: 10
   shootRange: 10
   layerMask:
     serializedVersion: 2
@@ -219,7 +220,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -327943529
+  m_SortingLayerID: 2131087235
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1dc46c0c87f46d64495779b5a52e165b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -249,7 +250,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -327943529
+  m_SortingLayerID: 2131087235
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7a830f211761f4468e390fcfd911a68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -279,7 +280,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -327943529
+  m_SortingLayerID: 2131087235
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 40ad9bf1098262f45ba2ccca00a73511, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

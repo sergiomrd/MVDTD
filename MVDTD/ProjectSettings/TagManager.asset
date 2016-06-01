@@ -50,11 +50,14 @@ TagManager:
   - name: TurretParts
     uniqueID: 3967023767
     locked: 0
+  - name: Enemys
+    uniqueID: 2159248235
+    locked: 0
   - name: Ammo
     uniqueID: 4100214035
     locked: 0
-  - name: Enemys
-    uniqueID: 2159248235
+  - name: Foreground
+    uniqueID: 2131087235
     locked: 0
   - name: UI
     uniqueID: 985214391

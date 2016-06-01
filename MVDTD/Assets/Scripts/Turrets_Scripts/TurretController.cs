@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class TurretController : MonoBehaviour
 {
+    public int maxLife;
 
 	//The amount of time wich the turret shoots the next shoot
 	public float fireRate;

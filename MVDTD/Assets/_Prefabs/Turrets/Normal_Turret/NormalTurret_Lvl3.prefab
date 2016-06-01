@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5989b9e7d451d8f43ae27d58c8a8f064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLife: 100
   fireRate: 1
   shootRange: 0
   layerMask:
