@@ -3,10 +3,38 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
+	public enum EnemyStates 
+	{
+		Walk,
+		MeleeAttack
+	}
+
+	[SerializeField]
+	private EnemyStates currentState;
+
+	public EnemyStates CurrentState {
+		get {
+			return currentState;
+		}
+		set {
+			currentState = value;
+		}
+	}
+
 	// Speed movement of the Enemy
 	public float speedMovement;
 
 	private SpriteRenderer enemyRender;
+
+	[SerializeField]
+	private TurretController enemyToAttack;
+
+	[SerializeField]
+	private float attackRate = 5;
+	private float currentAttackRate;
+
+	[SerializeField]
+	private int meleeAttackDamage = 40;
 
 	[SerializeField]
 	private int moneyCost;
@@ -44,20 +72,63 @@ public class EnemyController : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		enemyRender = GetComponent<SpriteRenderer> ();
 		currentLife = maxLife;
+		currentAttackRate = attackRate;
 
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		// Speed movement of the Rigidbody
-		Vector3 movement = Vector3.left * speedMovement * Time.deltaTime;
-		rb.MovePosition(rb.position + movement);
+		switch (currentState) 
+		{
+			case EnemyStates.Walk:
+			
+				MoveCharacter ();
+
+				break;
+		}
 	
 	}
 
+	void Update() {
+		
+		switch (currentState) 
+		{
+		case EnemyStates.MeleeAttack:
+				
+			if (enemyToAttack != null) 
+			{
+				MeleeAttack ();
+			} 
+			else 
+			{
+				CurrentState = EnemyStates.Walk;
+			}
 
-	public void Hit(int damage)
+			break;
+		}
+	}
+
+	void MoveCharacter()
+	{
+		// Speed movement of the Rigidbody
+		Vector3 movement = Vector3.left * speedMovement * Time.deltaTime;
+		rb.MovePosition(rb.position + movement);
+	}
+
+	void MeleeAttack()
+	{
+		Debug.Log (currentAttackRate);
+		currentAttackRate -= Time.deltaTime;
+		if (currentAttackRate <= 0) 
+		{
+			enemyToAttack.TakeDamage (meleeAttackDamage);
+			currentAttackRate = attackRate;
+		}
+
+	}
+
+	public void TakeDamage(int damage)
 	{
 		CurrentLife -= damage;
 		StartCoroutine (ChangeHitColor ());
@@ -91,7 +162,8 @@ public class EnemyController : MonoBehaviour {
     {
         if (other.collider.gameObject.GetComponent<TurretController>())
         {
-            speedMovement = 0;
+			CurrentState = EnemyStates.MeleeAttack;
+			enemyToAttack = other.gameObject.GetComponent<TurretController>();
         }
 
     }

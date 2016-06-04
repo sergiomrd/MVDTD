@@ -57,7 +57,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.49571133, y: 0.077905536, z: 0}
-  m_Center: {x: -0.025848627, y: 0.36520016, z: 0}
+  m_Center: {x: -0.025848627, y: 0.31, z: 0}
 --- !u!114 &11401102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,7 +69,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77af82f1cd650a548a2bed97ffc10977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   speedMovement: 0.3
+  enemyToAttack: {fileID: 0}
+  attackRate: 2
+  meleeAttackDamage: 40
   moneyCost: 20
   maxLife: 100
   currentLife: 0

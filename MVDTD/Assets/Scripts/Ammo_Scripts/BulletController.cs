@@ -47,7 +47,7 @@ public class BulletController : MonoBehaviour
 		if (other.GetComponent<EnemyController> () != null) {
 
 			EnemyController enemy = other.GetComponent<EnemyController>();
-			enemy.Hit (damageDeal);
+			enemy.TakeDamage (damageDeal);
 
 			Destroy (gameObject);
 		}
