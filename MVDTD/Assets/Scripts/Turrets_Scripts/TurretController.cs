@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class TurretController : MonoBehaviour
 {
-	
+
+    FloorTile tileOverPosition;
+
+
     public int maxLife;
 	[SerializeField]
 	private int currentLife;
@@ -60,7 +63,21 @@ public class TurretController : MonoBehaviour
 		}
 	}
 
-    
+    public FloorTile TileOverPosition
+    {
+        get
+        {
+            return tileOverPosition;
+        }
+
+        set
+        {
+            tileOverPosition = value;
+        }
+    }
+
+
+
 
     // Use this for initialization
     void Start ()
@@ -138,6 +155,7 @@ public class TurretController : MonoBehaviour
 
 	void Kill()
 	{
+        tileOverPosition.HasTurretOverTile = false;
 		Destroy (gameObject);
 	}
 		

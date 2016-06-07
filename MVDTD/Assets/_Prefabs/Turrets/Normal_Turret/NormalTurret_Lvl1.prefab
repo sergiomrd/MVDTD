@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 100
   currentLife: 0
-  fireRate: 2
+  fireRate: 3
   shootRange: 10
   layerMask:
     serializedVersion: 2

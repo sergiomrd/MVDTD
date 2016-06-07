@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  speedMovement: 0.3
+  speedMovement: 0.1
   enemyToAttack: {fileID: 0}
   attackRate: 2
   meleeAttackDamage: 40

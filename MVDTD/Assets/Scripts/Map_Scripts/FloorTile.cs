@@ -67,7 +67,7 @@ public class FloorTile : MonoBehaviour
 
 		// Sets the turret and makes the layers right
 		turretInstance = Instantiate (turretToSet, positionToSet, Quaternion.identity) as GameObject;
-
+        turretInstance.GetComponent<TurretController>().TileOverPosition = this;
         SpriteRenderer[] spriteRenderers = turretInstance.GetComponentsInChildren<SpriteRenderer>();
 
         int mapHeight = MapController.Instance.MapHeight;
