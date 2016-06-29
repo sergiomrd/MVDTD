@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController Instance { get; private set; }
 
 	// Bool to block the camera movement
 	[SerializeField]
@@ -21,6 +22,21 @@ public class CameraController : MonoBehaviour
 	[SerializeField]
 	private float speedMovement;
 	
+    void Awake()
+    {
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        DontDestroyOnLoad(this);
+    }
+
 	// Update is called once per frame
 	void Update ()
 	{

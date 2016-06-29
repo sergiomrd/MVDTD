@@ -4,12 +4,17 @@ using System.Collections.Generic;
 
 public class MapController : MonoBehaviour
 {
+    public GameObject mainCamera;
+
+    private GameObject mainCameraInstance;
 
 	// Making an instance of the Map
 	public static MapController Instance { get; private set; }
 
 	// TODO: Should be a list of prefabs to instantiate
 	public GameObject tilePrefab;
+
+    public GameObject boundaryTilePrefab;
 
 	// List of the tiles of the map
 	private List<GameObject> floorTilesList = new List<GameObject> ();
@@ -45,7 +50,20 @@ public class MapController : MonoBehaviour
 		}
 	}
 
-	void Awake ()
+    public GameObject MainCameraInstance
+    {
+        get
+        {
+            return mainCameraInstance;
+        }
+
+        set
+        {
+            mainCameraInstance = value;
+        }
+    }
+
+    void Awake ()
 	{
 		if (Instance != null && Instance != this) {
 			Destroy (gameObject);
@@ -53,9 +71,19 @@ public class MapController : MonoBehaviour
 			Instance = this;
 		}
 
+        if(mainCameraInstance == null)
+        {
+            CreateCamera();
+        }
         
 		CreateMap ();
         CreateMapBounds();
+    }
+
+    void CreateCamera()
+    {
+       mainCameraInstance = Instantiate(mainCamera, mainCamera.transform.position, Quaternion.identity) as GameObject;
+       Camera.SetupCurrent(mainCameraInstance.GetComponent<Camera>());
     }
 
 	void CreateMap ()
@@ -105,15 +133,13 @@ public class MapController : MonoBehaviour
 
             if(tile.XID == 0)
             {
-                Debug.Log(tile.transform.parent.name);
-                Debug.Log(tile.transform.parent.position);
                 boundSpawns.Add(new Vector3(tile.transform.parent.position.x - 1f, tile.transform.parent.position.y, 0));
             }
         }
 
         for(int j = 0; j < boundSpawns.Count; j++)
         {
-            GameObject tile = Instantiate(tilePrefab, boundSpawns[j], Quaternion.identity) as GameObject;
+            GameObject tile = Instantiate(boundaryTilePrefab, boundSpawns[j], Quaternion.identity) as GameObject;
             tile.transform.SetParent(boundContainer.transform);
         }
 

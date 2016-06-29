@@ -9,6 +9,7 @@ public class TouchLeanController : MonoBehaviour {
 
 	private RaycastHit hitInfo;
 
+    [SerializeField]
 	private FloorTile selectedTile;
 
 	public FloorTile SelectedTile {
@@ -45,6 +46,7 @@ public class TouchLeanController : MonoBehaviour {
 			Instance = this;
 		}
 
+        DontDestroyOnLoad(this);
 	}
 
 

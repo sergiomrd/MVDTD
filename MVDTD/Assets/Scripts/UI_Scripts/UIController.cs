@@ -48,6 +48,9 @@ public class UIController : MonoBehaviour
 			Instance = this;
 		}
 
+        DontDestroyOnLoad(this);
+        gameObject.GetComponent<Canvas>().worldCamera = Camera.main;
+        Debug.Log(Camera.main);
 		GetAllChildPanels ();
 
 	}

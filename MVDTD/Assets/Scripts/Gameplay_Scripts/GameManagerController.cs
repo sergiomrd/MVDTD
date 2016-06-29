@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManagerController : MonoBehaviour
 {
@@ -38,19 +39,55 @@ public class GameManagerController : MonoBehaviour
         {
             lives = value;
             uiGameplay.UpdateLives();
+            if (lives == 0)
+            {
+                uiGameplay.ShowGameOverPanel(true);
+            }
+            
         }
+    }
+
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        DontDestroyOnLoad(this);
     }
 
     void Start()
 	{
-		if (Instance != null && Instance != this) {
-			Destroy (gameObject);
-		} else {
-			Instance = this;
-		}
-
 		uiGameplay = UIController.Instance.GetChildPanel(UIController.UItype.GameplayUI).GetComponent<UIGameplay>();
 		Money = startMoney;
         Lives = startLives;
 	}
+
+    public void RestartGame()
+    {
+        GameManagerController.Instance.PauseGame(false);
+        uiGameplay.ShowGameOverPanel(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Money = startMoney;
+        Lives = startLives;
+    }
+
+    public void PauseGame(bool option)
+    {
+        if(option)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        
+    }
 }

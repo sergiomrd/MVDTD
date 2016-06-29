@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour {
 			currentLife = value;
 			if (currentLife <= 0) 
 			{
-				Kill ();
+				isKilled ();
 			}
 		}
 	}
@@ -152,11 +152,17 @@ public class EnemyController : MonoBehaviour {
 		GameManagerController.Instance.Money += moneyCost;
 	}
 
-	void Kill()
+	void isKilled()
 	{
 		GiveMoneyToThePlayer ();
 		Destroy (gameObject);
 	}
+
+    void hasReachedTheEnd()
+    {
+        GameManagerController.Instance.Lives -= 1;
+        Destroy(gameObject);
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -164,6 +170,12 @@ public class EnemyController : MonoBehaviour {
         {
 			CurrentState = EnemyStates.MeleeAttack;
 			enemyToAttack = other.gameObject.GetComponent<TurretController>();
+        }
+
+        if(other.collider.gameObject.GetComponent<BoundaryFloor>())
+        {
+            Debug.Log("Enter");
+            hasReachedTheEnd();
         }
 
     }
