@@ -14,8 +14,10 @@ public class MapController : MonoBehaviour
 	// List of the tiles of the map
 	private List<GameObject> floorTilesList = new List<GameObject> ();
 
-	// Map size
-	[SerializeField]
+    
+
+    // Map size
+    [SerializeField]
 	private int mapWidth = 9;
 	[SerializeField]
 	private int mapHeight = 5;
@@ -39,7 +41,7 @@ public class MapController : MonoBehaviour
 
 	public List<GameObject> FloorTilesList {
 		get {
-			return floorTilesList;
+            return floorTilesList;
 		}
 	}
 
@@ -51,21 +53,18 @@ public class MapController : MonoBehaviour
 			Instance = this;
 		}
 
+        
 		CreateMap ();
-	}
-
-
-	void Start ()
-	{
-
-
-
-	}
+        CreateMapBounds();
+    }
 
 	void CreateMap ()
 	{
-		//TODO: Adapt for more tile types
-		for (int x = 0; x < mapWidth; x++) {
+        GameObject mapContainer = new GameObject("Map");
+        mapContainer.transform.SetParent(this.gameObject.transform);
+
+        //TODO: Adapt for more tile types
+        for (int x = 0; x < mapWidth; x++) {
 			
 			newXOffset = 0.375f;
 
@@ -76,14 +75,14 @@ public class MapController : MonoBehaviour
 					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().XID = x;
 					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().YID = y;
 					newXOffset += xOffset / 2;
-					normalTile.transform.SetParent (this.gameObject.transform);
+					normalTile.transform.SetParent (mapContainer.transform);
 					normalTile.name = ("Tile" + "_" + x + "_" + y);
 					floorTilesList.Add (normalTile);
 				} else {
 					GameObject normalTile = Instantiate (tilePrefab, new Vector2 (x * xOffset, y * yOffset), Quaternion.identity) as GameObject;
 					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().XID = x;
 					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().YID = y;
-					normalTile.transform.SetParent (this.gameObject.transform);
+					normalTile.transform.SetParent (mapContainer.transform);
 					normalTile.name = ("Tile" + "_" + x + "_" + y);
 					floorTilesList.Add (normalTile);
 				}
@@ -92,5 +91,32 @@ public class MapController : MonoBehaviour
 			}
 		}
 	}
+
+    void CreateMapBounds()
+    {
+        GameObject boundContainer = new GameObject("Bounds");
+        boundContainer.transform.SetParent(this.gameObject.transform);
+        List<Vector3> boundSpawns = new List<Vector3>();
+
+        for (int i = 0; i < FloorTilesList.Count; i++)
+        {
+            FloorTile tile = FloorTilesList[i].transform.GetChild(0).GetComponent<FloorTile>();
+            
+
+            if(tile.XID == 0)
+            {
+                Debug.Log(tile.transform.parent.name);
+                Debug.Log(tile.transform.parent.position);
+                boundSpawns.Add(new Vector3(tile.transform.parent.position.x - 1f, tile.transform.parent.position.y, 0));
+            }
+        }
+
+        for(int j = 0; j < boundSpawns.Count; j++)
+        {
+            GameObject tile = Instantiate(tilePrefab, boundSpawns[j], Quaternion.identity) as GameObject;
+            tile.transform.SetParent(boundContainer.transform);
+        }
+
+    }
 		
 }

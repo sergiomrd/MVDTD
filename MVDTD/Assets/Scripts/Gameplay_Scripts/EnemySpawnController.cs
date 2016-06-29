@@ -87,7 +87,6 @@ public class EnemySpawnController : MonoBehaviour
 
 	void SetSpawns ()
 	{
-		
 		int mapWidth = MapController.Instance.MapWidth;
 
 		List<GameObject> tileList = MapController.Instance.FloorTilesList;

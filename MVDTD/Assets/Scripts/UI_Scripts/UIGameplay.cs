@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class UIGameplay : MonoBehaviour {
 
-	private Text moneyText;
+	public Text moneyText;
+    public Text livesText;
+
 	void Awake()
 	{
-		moneyText = gameObject.transform.GetComponentInChildren<Text>();
+
 	}
 
 
@@ -15,4 +17,9 @@ public class UIGameplay : MonoBehaviour {
 	{
 		moneyText.text = "Money: " + GameManagerController.Instance.Money.ToString() + " $";
 	}
+
+    public void UpdateLives()
+    {
+        livesText.text = "Lives: " + GameManagerController.Instance.Lives.ToString();
+    }
 }

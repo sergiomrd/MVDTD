@@ -9,6 +9,11 @@ public class GameManagerController : MonoBehaviour
 
 	private int money;
 
+    private int lives;
+
+    [SerializeField]
+    private int startLives;
+
 	[SerializeField]
 	private int startMoney;
 
@@ -22,7 +27,21 @@ public class GameManagerController : MonoBehaviour
 		}
 	}
 
-	void Start()
+    public int Lives
+    {
+        get
+        {
+            return lives;
+        }
+
+        set
+        {
+            lives = value;
+            uiGameplay.UpdateLives();
+        }
+    }
+
+    void Start()
 	{
 		if (Instance != null && Instance != this) {
 			Destroy (gameObject);
@@ -32,5 +51,6 @@ public class GameManagerController : MonoBehaviour
 
 		uiGameplay = UIController.Instance.GetChildPanel(UIController.UItype.GameplayUI).GetComponent<UIGameplay>();
 		Money = startMoney;
+        Lives = startLives;
 	}
 }
