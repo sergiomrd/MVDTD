@@ -6,7 +6,6 @@ public class MapController : MonoBehaviour
 {
     public GameObject mainCamera;
 
-    [SerializeField]
     private GameObject mainCameraInstance;
 
 	// Making an instance of the Map
@@ -32,13 +31,21 @@ public class MapController : MonoBehaviour
 		get {
 			return mapHeight;
 		}
+        set
+        {
+            mapHeight = value;
+        }
 	}
 
 	public int MapWidth {
 		get {
 			return mapWidth;
 		}
-	}
+        set
+        {
+            mapWidth = value;
+        }
+    }
 
 	// Offset of the tiles
 	private float yOffset = 0.375f;
@@ -72,12 +79,18 @@ public class MapController : MonoBehaviour
 			Instance = this;
 		}
 
-        if(mainCameraInstance == null)
+        //InitMap();
+        
+    }
+
+    public void InitMap()
+    {
+        if (mainCameraInstance == null)
         {
             CreateCamera();
         }
-        
-		CreateMap ();
+
+        CreateMap();
         CreateMapBounds();
     }
 
