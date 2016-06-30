@@ -4,12 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerController : MonoBehaviour
 {
+    // Create an instance of GameManager
 	public static GameManagerController Instance { get; private set;}
-
+    
+    // References the uiGameplay;
 	UIGameplay uiGameplay;
 
+    // Number of money of the player
 	private int money;
 
+    // Number of lives of the player
     private int lives;
 
     [SerializeField]
@@ -69,14 +73,18 @@ public class GameManagerController : MonoBehaviour
         Lives = startLives;
 	}
 
+    //TODO - MAKE IT ALL INITS
     public void RestartGame()
     {
+        
         GameManagerController.Instance.PauseGame(false);
         uiGameplay.ShowGameOverPanel(false);
-        UIController.Instance.SetActive_WaveMenu(true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Money = startMoney;
-        Lives = startLives;
+
+        MapController.Instance.InitMap();
+        //UIController.Instance.SetActive_WaveMenu(true);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Money = startMoney;
+        //Lives = startLives;
     }
 
     public void PauseGame(bool option)

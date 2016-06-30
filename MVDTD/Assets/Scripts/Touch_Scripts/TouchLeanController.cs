@@ -53,7 +53,7 @@ public class TouchLeanController : MonoBehaviour {
 	void OnFingerDown(Lean.LeanFinger finger)
 	{
 		
-
+        //If the touch isn't over a GUI we send a raycast to the world
 		if(!finger.IsOverGui)
 		{
 			Ray ray = finger.GetRay();
@@ -69,7 +69,7 @@ public class TouchLeanController : MonoBehaviour {
 	}
 	void OnFingerUp(Lean.LeanFinger finger)
 	{
-
+        //If we haven't moved more than 10 points, we have made a "touch"
 		if(finger.TotalDeltaScreenPosition.x < 5 && finger.TotalDeltaScreenPosition.x > -5)
 		{
 			

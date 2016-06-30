@@ -108,42 +108,65 @@ public class MapController : MonoBehaviour
     // This method handles the creation of the map
 	void CreateMap ()
 	{
+        Transform child = gameObject.transform.FindChild("Map");
+
+        if (child != null)
+        {
+            Destroy(child.gameObject);
+            //CreateMap();
+        }
+        
+        
         // Adds a container for the tiles
         GameObject mapContainer = new GameObject("Map");
         mapContainer.transform.SetParent(this.gameObject.transform);
 
         //TODO: Adapt for more tile types
-        for (int x = 0; x < mapWidth; x++) {
-			
-			newXOffset = 0.375f;
+        for (int x = 0; x < mapWidth; x++)
+        {
 
-			for (int y = 0; y < mapHeight; y++) {
-				
-				if (y != 0) { 
-					GameObject normalTile = Instantiate (tilePrefab, new Vector2 ((x * xOffset) + (newXOffset), y * yOffset), Quaternion.identity) as GameObject;
-					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().XID = x;
-					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().YID = y;
-					newXOffset += xOffset / 2;
-					normalTile.transform.SetParent (mapContainer.transform);
-					normalTile.name = ("Tile" + "_" + x + "_" + y);
-					floorTilesList.Add (normalTile);
-				} else {
-					GameObject normalTile = Instantiate (tilePrefab, new Vector2 (x * xOffset, y * yOffset), Quaternion.identity) as GameObject;
-					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().XID = x;
-					normalTile.transform.GetChild (0).GetComponent<FloorTile> ().YID = y;
-					normalTile.transform.SetParent (mapContainer.transform);
-					normalTile.name = ("Tile" + "_" + x + "_" + y);
-					floorTilesList.Add (normalTile);
-				}
-					
+            newXOffset = 0.375f;
 
-			}
-		}
+            for (int y = 0; y < mapHeight; y++)
+            {
+
+                if (y != 0)
+                {
+                    GameObject normalTile = Instantiate(tilePrefab, new Vector2((x * xOffset) + (newXOffset), y * yOffset), Quaternion.identity) as GameObject;
+                    normalTile.transform.GetChild(0).GetComponent<FloorTile>().XID = x;
+                    normalTile.transform.GetChild(0).GetComponent<FloorTile>().YID = y;
+                    newXOffset += xOffset / 2;
+                    normalTile.transform.SetParent(mapContainer.transform);
+                    normalTile.name = ("Tile" + "_" + x + "_" + y);
+                    floorTilesList.Add(normalTile);
+                }
+                else
+                {
+                    GameObject normalTile = Instantiate(tilePrefab, new Vector2(x * xOffset, y * yOffset), Quaternion.identity) as GameObject;
+                    normalTile.transform.GetChild(0).GetComponent<FloorTile>().XID = x;
+                    normalTile.transform.GetChild(0).GetComponent<FloorTile>().YID = y;
+                    normalTile.transform.SetParent(mapContainer.transform);
+                    normalTile.name = ("Tile" + "_" + x + "_" + y);
+                    floorTilesList.Add(normalTile);
+                }
+
+            
+                
+            }
+        }
+       
 	}
 
     //This method creates the map bounds for the enemys
     void CreateMapBounds()
     {
+        Transform child = gameObject.transform.FindChild("Bounds");
+
+        if (child != null)
+        {
+            Destroy(child.gameObject);
+        }
+
         // Adds a container for the bounds
         GameObject boundContainer = new GameObject("Bounds");
         boundContainer.transform.SetParent(this.gameObject.transform);
