@@ -73,6 +73,7 @@ public class GameManagerController : MonoBehaviour
     {
         GameManagerController.Instance.PauseGame(false);
         uiGameplay.ShowGameOverPanel(false);
+        UIController.Instance.SetActive_WaveMenu(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Money = startMoney;
         Lives = startLives;

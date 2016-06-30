@@ -15,7 +15,8 @@ public class UIController : MonoBehaviour
     {
         TileMenu,
         TurretMenu,
-        GameplayUI
+        GameplayUI,
+        WaveMenu
 
     }
 
@@ -92,6 +93,10 @@ public class UIController : MonoBehaviour
 			
 			return UIPanelList[2];
 
+        case UItype.WaveMenu:
+
+            return UIPanelList[3];
+
 		}
 
 		return null;
@@ -144,5 +149,19 @@ public class UIController : MonoBehaviour
 
 		}
 	}
+
+    public void SetActive_WaveMenu(bool choice)
+    {
+        GameObject waveMenu = GetChildPanel(UItype.WaveMenu);
+
+        if(choice)
+        {
+            waveMenu.SetActive(true);
+        }
+        else
+        {
+            waveMenu.SetActive(false);
+        }
+    }
 }
 

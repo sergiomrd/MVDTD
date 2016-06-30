@@ -2,24 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// It handle the map creation
 public class MapController : MonoBehaviour
 {
-    public GameObject mainCamera;
-
-    private GameObject mainCameraInstance;
-
-	// Making an instance of the Map
+	// Making an instance of the class MapController
 	public static MapController Instance { get; private set; }
 
-	// TODO: Should be a list of prefabs to instantiate
-	public GameObject tilePrefab;
+    // It takes the main camera of the scene
+    public GameObject mainCamera;
+    private GameObject mainCameraInstance;
 
+    // TODO: Should be a list of prefabs to instantiate
+    public GameObject tilePrefab;
+
+    // Tile prefabs for the boundaries of the map
     public GameObject boundaryTilePrefab;
 
 	// List of the tiles of the map
 	private List<GameObject> floorTilesList = new List<GameObject> ();
-
-    
 
     // Map size
     [SerializeField]
@@ -27,7 +27,12 @@ public class MapController : MonoBehaviour
 	[SerializeField]
 	private int mapHeight = 5;
 
-	public int MapHeight {
+    // Offset of the tiles
+    private float yOffset = 0.375f;
+    private float xOffset = 0.78f;
+    private float newXOffset;
+
+    public int MapHeight {
 		get {
 			return mapHeight;
 		}
@@ -46,11 +51,6 @@ public class MapController : MonoBehaviour
             mapWidth = value;
         }
     }
-
-	// Offset of the tiles
-	private float yOffset = 0.375f;
-	private float xOffset = 0.78f;
-	private float newXOffset;
 
 	public List<GameObject> FloorTilesList {
 		get {
@@ -79,29 +79,36 @@ public class MapController : MonoBehaviour
 			Instance = this;
 		}
 
+        DontDestroyOnLoad(this);
         //InitMap();
         
     }
 
+    // Inits the map
     public void InitMap()
     {
+        // If there is no instance of the camera, it creates
         if (mainCameraInstance == null)
         {
             CreateCamera();
         }
 
+        //Create the map and the boundaries
         CreateMap();
         CreateMapBounds();
     }
 
+    // This method instances the camera of the scene and setups as main camera of the scene
     void CreateCamera()
     {
        mainCameraInstance = Instantiate(mainCamera, mainCamera.transform.position, Quaternion.identity) as GameObject;
        Camera.SetupCurrent(mainCameraInstance.GetComponent<Camera>());
     }
 
+    // This method handles the creation of the map
 	void CreateMap ()
 	{
+        // Adds a container for the tiles
         GameObject mapContainer = new GameObject("Map");
         mapContainer.transform.SetParent(this.gameObject.transform);
 
@@ -134,8 +141,10 @@ public class MapController : MonoBehaviour
 		}
 	}
 
+    //This method creates the map bounds for the enemys
     void CreateMapBounds()
     {
+        // Adds a container for the bounds
         GameObject boundContainer = new GameObject("Bounds");
         boundContainer.transform.SetParent(this.gameObject.transform);
         List<Vector3> boundSpawns = new List<Vector3>();
