@@ -49,11 +49,15 @@ public class UIController : MonoBehaviour
 		}
 
         DontDestroyOnLoad(this);
-        gameObject.GetComponent<Canvas>().worldCamera = Camera.main;
-        Debug.Log(Camera.main);
 		GetAllChildPanels ();
 
 	}
+
+    void Start()
+    {
+        gameObject.GetComponent<Canvas>().worldCamera = Camera.main;
+    }
+
 
 	/// <summary>
 	/// Gets all child GUI.

@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: 029bb378df215d449b7679a2fca8d68d
+timeCreated: 1467277939
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: normalEnemy_0
+    21300002: normalEnemy_1
+    21300004: normalEnemy_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: normalEnemy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 31}
+        - {x: -13, y: 26}
+        - {x: -13, y: 2}
+        - {x: -11, y: 0}
+        - {x: 8, y: 0}
+        - {x: 8, y: 27}
+        - {x: 5, y: 31}
+    - name: normalEnemy_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: 30}
+        - {x: -6, y: 30}
+        - {x: -11, y: 26}
+        - {x: -12, y: 12}
+        - {x: -12, y: 5}
+        - {x: -9, y: 0}
+        - {x: 5, y: 0}
+        - {x: 9, y: 5}
+        - {x: 9, y: 23}
+    - name: normalEnemy_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 31}
+        - {x: -12, y: 7}
+        - {x: -10, y: 0}
+        - {x: 8, y: 0}
+        - {x: 10, y: 4}
+        - {x: 10, y: 28}
+        - {x: 4, y: 31}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -118,7 +118,6 @@ public class EnemyController : MonoBehaviour {
 
 	void MeleeAttack()
 	{
-		Debug.Log (currentAttackRate);
 		currentAttackRate -= Time.deltaTime;
 		if (currentAttackRate <= 0) 
 		{

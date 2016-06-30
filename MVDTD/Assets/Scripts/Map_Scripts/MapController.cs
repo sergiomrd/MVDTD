@@ -6,6 +6,7 @@ public class MapController : MonoBehaviour
 {
     public GameObject mainCamera;
 
+    [SerializeField]
     private GameObject mainCameraInstance;
 
 	// Making an instance of the Map
