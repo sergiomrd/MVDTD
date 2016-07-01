@@ -7,6 +7,8 @@ public class EnemySpawnController : MonoBehaviour
 
 	public static EnemySpawnController Instance { get; private set;}
 
+    private List<GameObject> enemiesPooledList = new List<GameObject>();
+
 	[SerializeField]
 	private List<Vector3> spawnPoints = new List<Vector3> ();
 
@@ -57,13 +59,16 @@ public class EnemySpawnController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		SetSpawns ();
-		SetEnemyAtRandom (enemy);
+        SetSpawns();
+        InitSpawn();
+        InitEnemiesPool();
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        /*
 		if (currentWaveNumber < numberOfWaves) 
 		{
 			if (currentEnemySpawned == numberOfEnemies) 
@@ -82,9 +87,31 @@ public class EnemySpawnController : MonoBehaviour
 			}
 
 		}
+        */
 
 	}
 
+    void InitEnemiesPool()
+    {
+        GameObject pool = new GameObject("EnemiesPool");
+        pool.transform.SetParent(this.gameObject.transform);
+
+        for(int i = 0; i < numberOfEnemies; i++)
+        {
+            GameObject enemyInstance = Instantiate(enemy, gameObject.transform.position, Quaternion.identity) as GameObject;
+            enemyInstance.transform.SetParent(pool.transform);
+            enemyInstance.SetActive(false);
+            enemiesPooledList.Add(enemyInstance);
+        }
+    }
+
+    public void InitSpawn()
+    {
+        currentEnemySpawned = 0;
+        currentWaveNumber = 0;
+    }
+
+    // Set the Spawns of the Enemies 
 	void SetSpawns ()
 	{
 		int mapWidth = MapController.Instance.MapWidth;
@@ -102,6 +129,8 @@ public class EnemySpawnController : MonoBehaviour
 
 	}
 
+    // Can set the enemy on a spawn
+    // TODO - Set an enemy in a location
 	void SetEnemy ()
 	{
 		for (int i = 0; i < spawnPoints.Count; i++) {
@@ -119,5 +148,9 @@ public class EnemySpawnController : MonoBehaviour
 		currentEnemySpawned++;
 	}
 
+    void DestroyAllEnemies()
+    {
+
+    }
 
 }

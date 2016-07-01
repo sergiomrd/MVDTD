@@ -73,6 +73,12 @@ public class GameManagerController : MonoBehaviour
         Lives = startLives;
 	}
 
+    void InitGameConfig()
+    {
+        Money = startMoney;
+        Lives = startLives;
+    }
+
     //TODO - MAKE IT ALL INITS
     public void RestartGame()
     {
@@ -81,6 +87,8 @@ public class GameManagerController : MonoBehaviour
         uiGameplay.ShowGameOverPanel(false);
 
         MapController.Instance.InitMap();
+        InitGameConfig();
+        //EnemySpawnController.Instance.InitSpawn();
         //UIController.Instance.SetActive_WaveMenu(true);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //Money = startMoney;

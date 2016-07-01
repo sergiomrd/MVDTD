@@ -173,7 +173,6 @@ public class EnemyController : MonoBehaviour {
 
         if(other.collider.gameObject.GetComponent<BoundaryFloor>())
         {
-            Debug.Log("Enter");
             hasReachedTheEnd();
         }
 

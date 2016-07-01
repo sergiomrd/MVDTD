@@ -20,6 +20,7 @@ public class MapController : MonoBehaviour
 
 	// List of the tiles of the map
 	private List<GameObject> floorTilesList = new List<GameObject> ();
+    private List<Vector3> boundSpawns = new List<Vector3>();
 
     // Map size
     [SerializeField]
@@ -108,15 +109,18 @@ public class MapController : MonoBehaviour
     // This method handles the creation of the map
 	void CreateMap ()
 	{
+        
         Transform child = gameObject.transform.FindChild("Map");
 
         if (child != null)
         {
             Destroy(child.gameObject);
+            floorTilesList.Clear();
             //CreateMap();
         }
-        
-        
+
+        //TODO Make it for same restart or new config
+
         // Adds a container for the tiles
         GameObject mapContainer = new GameObject("Map");
         mapContainer.transform.SetParent(this.gameObject.transform);
@@ -153,6 +157,7 @@ public class MapController : MonoBehaviour
             
                 
             }
+
         }
        
 	}
@@ -164,13 +169,15 @@ public class MapController : MonoBehaviour
 
         if (child != null)
         {
+            
             Destroy(child.gameObject);
+            boundSpawns.Clear();
+
         }
 
         // Adds a container for the bounds
         GameObject boundContainer = new GameObject("Bounds");
         boundContainer.transform.SetParent(this.gameObject.transform);
-        List<Vector3> boundSpawns = new List<Vector3>();
 
         for (int i = 0; i < FloorTilesList.Count; i++)
         {
