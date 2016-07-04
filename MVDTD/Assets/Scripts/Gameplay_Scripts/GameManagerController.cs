@@ -88,6 +88,7 @@ public class GameManagerController : MonoBehaviour
 
         MapController.Instance.InitMap();
         InitGameConfig();
+        EnemySpawnController.Instance.InitSpawn();
         //EnemySpawnController.Instance.InitSpawn();
         //UIController.Instance.SetActive_WaveMenu(true);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);

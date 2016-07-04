@@ -154,13 +154,18 @@ public class EnemyController : MonoBehaviour {
 	void isKilled()
 	{
 		GiveMoneyToThePlayer ();
-		Destroy (gameObject);
+        Destroyed();
 	}
 
     void hasReachedTheEnd()
     {
         GameManagerController.Instance.Lives -= 1;
-        Destroy(gameObject);
+        Destroyed();
+    }
+
+    void Destroyed()
+    {
+        gameObject.SetActive(false);
     }
 
     void OnCollisionEnter(Collision other)

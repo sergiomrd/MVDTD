@@ -2216,6 +2216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9b37792054f494583f589d94853d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxPools: 10
   spawnPoints: []
   enemy: {fileID: 147294, guid: 1768d7afa34a20845bf1ebe4bfdcc6c1, type: 2}
   numberOfEnemies: 10

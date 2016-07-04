@@ -9,6 +9,11 @@ public class EnemySpawnController : MonoBehaviour
 
     private List<GameObject> enemiesPooledList = new List<GameObject>();
 
+    [SerializeField]
+    private int maxPools;
+
+    private GameObject pool;
+
 	[SerializeField]
 	private List<Vector3> spawnPoints = new List<Vector3> ();
 
@@ -61,14 +66,13 @@ public class EnemySpawnController : MonoBehaviour
 	{
         SetSpawns();
         InitSpawn();
-        InitEnemiesPool();
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
 	{
-        /*
+        
 		if (currentWaveNumber < numberOfWaves) 
 		{
 			if (currentEnemySpawned == numberOfEnemies) 
@@ -87,28 +91,46 @@ public class EnemySpawnController : MonoBehaviour
 			}
 
 		}
-        */
+        
 
 	}
 
     void InitEnemiesPool()
     {
-        GameObject pool = new GameObject("EnemiesPool");
-        pool.transform.SetParent(this.gameObject.transform);
+        
+        Transform child = gameObject.transform.FindChild("EnemiesPool");
 
-        for(int i = 0; i < numberOfEnemies; i++)
+        if (child == null)
         {
-            GameObject enemyInstance = Instantiate(enemy, gameObject.transform.position, Quaternion.identity) as GameObject;
-            enemyInstance.transform.SetParent(pool.transform);
-            enemyInstance.SetActive(false);
-            enemiesPooledList.Add(enemyInstance);
+
+            pool = new GameObject("EnemiesPool");
+            pool.transform.SetParent(this.gameObject.transform);
+            //Destroy(child.gameObject);
+            //enemiesPooledList.Clear();
+
+            for (int i = 0; i < maxPools; i++)
+            {
+                GameObject enemyInstance = Instantiate(enemy, gameObject.transform.position, Quaternion.identity) as GameObject;
+                enemyInstance.transform.SetParent(pool.transform);
+                enemyInstance.SetActive(false);
+                enemiesPooledList.Add(enemyInstance);
+            }
+
         }
+
+        
+
+       
     }
 
     public void InitSpawn()
     {
+        InitEnemiesPool();
+        ResetAllEnemies();
         currentEnemySpawned = 0;
         currentWaveNumber = 0;
+        
+        
     }
 
     // Set the Spawns of the Enemies 
@@ -141,16 +163,37 @@ public class EnemySpawnController : MonoBehaviour
 
 	void SetEnemyAtRandom(GameObject enemyToInstantiate)
 	{
-		int random = Random.Range (0, spawnPoints.Count);
-		Vector3 spawn = spawnPoints [random];
-		GameObject enemyInstance = Instantiate (enemyToInstantiate, spawn, Quaternion.identity) as GameObject;
-		enemyInstance.GetComponent<SpriteRenderer> ().sortingOrder = -random;
-		currentEnemySpawned++;
+        if(GetPooledObject() != null)
+        {
+            int random = Random.Range(0, spawnPoints.Count);
+            Vector3 spawn = spawnPoints[random];
+            GameObject enemyInstance = GetPooledObject();
+            enemyInstance.transform.position = spawn;
+            enemyInstance.GetComponent<SpriteRenderer>().sortingOrder = -random;
+            enemyInstance.SetActive(true);
+            currentEnemySpawned++;
+        }
+		
 	}
 
-    void DestroyAllEnemies()
+    GameObject GetPooledObject()
     {
+        for(int i = 0; i < enemiesPooledList.Count; i++)
+        {
+            if(!enemiesPooledList[i].activeInHierarchy)
+            {
+                return enemiesPooledList[i];
+            }
+        }
+        return null;
+    }
 
+    void ResetAllEnemies()
+    {
+        for(int i = 0; i < enemiesPooledList.Count; i++)
+        {
+            enemiesPooledList[i].SetActive(false);
+        }
     }
 
 }
