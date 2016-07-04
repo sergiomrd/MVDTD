@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
 
 	public enum EnemyStates 
 	{
 		Walk,
-		MeleeAttack
+		MeleeAttack,
+        Dead
 	}
+
+    public Canvas rewardCanvas;
 
 	[SerializeField]
 	private EnemyStates currentState;
@@ -44,6 +48,17 @@ public class EnemyController : MonoBehaviour {
 			return moneyCost;
 		}
 	}
+
+    [SerializeField]
+    private int expCost;
+
+    public int ExpCost
+    {
+        get
+        {
+            return expCost;
+        }
+    }
 
 	[SerializeField]
 	private int maxLife = 100;
@@ -86,6 +101,12 @@ public class EnemyController : MonoBehaviour {
 				MoveCharacter ();
 
 				break;
+
+            case EnemyStates.Dead:
+
+                rewardCanvas.gameObject.SetActive(true);
+
+                break;
 		}
 	
 	}
@@ -153,8 +174,9 @@ public class EnemyController : MonoBehaviour {
 
 	void isKilled()
 	{
-		GiveMoneyToThePlayer ();
-        Destroyed();
+        currentState = EnemyStates.Dead;
+        GiveMoneyToThePlayer ();
+        StartCoroutine(EnemyDestroyed());
 	}
 
     void hasReachedTheEnd()
@@ -166,6 +188,13 @@ public class EnemyController : MonoBehaviour {
     void Destroyed()
     {
         gameObject.SetActive(false);
+    }
+
+    IEnumerator EnemyDestroyed()
+    {
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
+
     }
 
     void OnCollisionEnter(Collision other)
