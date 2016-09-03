@@ -2,8 +2,13 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Class that handle the Enemy Behavior
+/// </summary>
 public class EnemyController : MonoBehaviour {
 
+    // Enum for the state of the Enemy
 	public enum EnemyStates 
 	{
 		Walk,
@@ -11,11 +16,13 @@ public class EnemyController : MonoBehaviour {
         Dead
 	}
 
+    // Canvas for the reward gained when the enemy is killed
     public Canvas rewardCanvas;
 
 	[SerializeField]
 	private EnemyStates currentState;
 
+    // Property for the current state of the enmy
 	public EnemyStates CurrentState {
 		get {
 			return currentState;
@@ -28,9 +35,14 @@ public class EnemyController : MonoBehaviour {
 	// Speed movement of the Enemy
 	public float speedMovement;
 
+    // Render of the enemy
 	private SpriteRenderer enemyRender;
 
-	[SerializeField]
+    // Rigidbody of the enemy
+    private Rigidbody rb;
+
+    // This marks the enemy to attack
+    [SerializeField]
 	private TurretController enemyToAttack;
 
 	[SerializeField]
@@ -40,6 +52,7 @@ public class EnemyController : MonoBehaviour {
 	[SerializeField]
 	private int meleeAttackDamage = 40;
 
+    // How much does the player gain in money when this enemy is killed
 	[SerializeField]
 	private int moneyCost;
 
@@ -49,9 +62,11 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+
     [SerializeField]
     private int expCost;
 
+    // How much does the player gain in experience when this enemy is killed
     public int ExpCost
     {
         get
@@ -66,6 +81,7 @@ public class EnemyController : MonoBehaviour {
 	[SerializeField]
 	private int currentLife;
 
+    // Property of the current life of the enemy. If the current life is 0, call the isKilled method
 	public int CurrentLife {
 		get {
 			return currentLife;
@@ -79,9 +95,10 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	private Rigidbody rb;
+	
 
 	// Use this for initialization
+    // Initialice the components, the life and the Attack Rate
 	void Start () {
 	
 		rb = GetComponent<Rigidbody>();
@@ -92,6 +109,7 @@ public class EnemyController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    // On FixedUpdate check and change the states of our enemy for movement
 	void FixedUpdate () {
 
 		switch (currentState) 
@@ -102,15 +120,11 @@ public class EnemyController : MonoBehaviour {
 
 				break;
 
-            case EnemyStates.Dead:
-
-                rewardCanvas.gameObject.SetActive(true);
-
-                break;
 		}
 	
 	}
 
+    // On Update checks and change the states of our enemy for different actions 
 	void Update() {
 		
 		switch (currentState) 
@@ -127,9 +141,17 @@ public class EnemyController : MonoBehaviour {
 			}
 
 			break;
-		}
+
+
+         case EnemyStates.Dead:
+
+            rewardCanvas.gameObject.SetActive(true);
+
+            break;
+        }
 	}
 
+    // This method moves the character to the position that is facing
 	void MoveCharacter()
 	{
 		// Speed movement of the Rigidbody
@@ -137,6 +159,7 @@ public class EnemyController : MonoBehaviour {
 		rb.MovePosition(rb.position + movement);
 	}
 
+    // This method handle the enemy attack. Every attack rate, the enemy turret marked takes damage.
 	void MeleeAttack()
 	{
 		currentAttackRate -= Time.deltaTime;
@@ -148,6 +171,7 @@ public class EnemyController : MonoBehaviour {
 
 	}
 
+    // Method that makes the current enemy get damage from the turrets attacks
 	public void TakeDamage(int damage)
 	{
 		CurrentLife -= damage;
@@ -155,6 +179,7 @@ public class EnemyController : MonoBehaviour {
 
 	}
 
+    // Coroutine that handles that the enemy currently hit changes color
 	IEnumerator ChangeHitColor()
 	{
 
@@ -167,11 +192,14 @@ public class EnemyController : MonoBehaviour {
 		enemyRender.color = startColor;
 	}
 
+    // This method gives the money to the player
 	void GiveMoneyToThePlayer()
 	{
 		GameManagerController.Instance.Money += moneyCost;
 	}
 
+    // When the current health is 0 the state of the enemy changes to dead, gives the money of the current enemy dead toteh player and start
+    // the coroutine 
 	void isKilled()
 	{
         currentState = EnemyStates.Dead;
@@ -193,6 +221,7 @@ public class EnemyController : MonoBehaviour {
     IEnumerator EnemyDestroyed()
     {
         yield return new WaitForSeconds(2);
+        rewardCanvas.gameObject.SetActive(false);
         gameObject.SetActive(false);
 
     }

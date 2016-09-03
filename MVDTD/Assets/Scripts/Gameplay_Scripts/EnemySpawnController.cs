@@ -64,6 +64,7 @@ public class EnemySpawnController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+        
         SetSpawns();
         InitSpawn();
 
@@ -170,6 +171,8 @@ public class EnemySpawnController : MonoBehaviour
             GameObject enemyInstance = GetPooledObject();
             enemyInstance.transform.position = spawn;
             enemyInstance.GetComponent<SpriteRenderer>().sortingOrder = -random;
+            enemyInstance.GetComponent<SpriteRenderer>().color = Color.white;
+            enemyInstance.GetComponent<EnemyController>().CurrentState = EnemyController.EnemyStates.Walk;
             enemyInstance.SetActive(true);
             currentEnemySpawned++;
         }
